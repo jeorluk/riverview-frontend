@@ -7,7 +7,6 @@ const Index = () => {
         <li>A banner at the top that scrolls </li>
         <li>A list of concerts </li>
         <li>Special announcements</li>
-        <li>etc</li>
       </ul>
     </div>
   )
