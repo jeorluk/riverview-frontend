@@ -68,7 +68,7 @@ const artistPage = ({ artist }) => {
         <title>Riverview Early Music | {name}</title>
       </Head>
       <Link href='/artists'>
-        <h1>{`◀️${name}`}</h1>
+        <h1>{`${name}`}</h1>
       </Link>
       <ArtistCard>
         <div
@@ -82,7 +82,6 @@ const artistPage = ({ artist }) => {
         </div>
 
         <div className='details'>
-          <h2>{name || 'No name'}</h2>
           {bio && <BlockContent blocks={bio} />}
           {instruments &&
             instruments.map(instrument => (

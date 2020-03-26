@@ -5,15 +5,6 @@ import client from '../client'
 import SingleArtist from '../components/SingleArtist'
 import Link from 'next/link'
 
-const query = groq`*[_type == "artist"]{
-    _id,
-    slug,
-   name,
-   featured,
-   image,
-   "imageMeta": image.asset->,
-  }`
-
 const ArtistsStyles = styled.div`
   text-align: center;
 `
@@ -56,9 +47,19 @@ const artists = props => {
   )
 }
 
-artists.getInitialProps = async ctx => {
+export async function getStaticProps() {
+  const query = groq`*[_type == "artist"]{
+    _id,
+    slug,
+   name,
+   featured,
+   image,
+   "imageMeta": image.asset->,
+  }`
+  const artistList = await client.fetch(query)
+
   return {
-    artistList: await client.fetch(query),
+    props: { artistList },
   }
 }
 
