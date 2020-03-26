@@ -55,6 +55,7 @@ const eventPage = ({ event }) => {
   return (
     <EventStyles>
       <Head>
+        <meta name='description' content={`Event information for ${name}`} />
         <title>Riverview Early Music | {name}</title>
       </Head>
       <img

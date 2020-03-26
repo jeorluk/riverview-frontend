@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import client from '../client'
 import SingleArtist from '../components/SingleArtist'
 import Link from 'next/link'
+import Head from 'next/head'
 
 const ArtistsStyles = styled.div`
   text-align: center;
@@ -30,6 +31,13 @@ const artists = props => {
   const { artistList = [] } = props
   return (
     <ArtistsStyles>
+      <Head>
+        <title>Riverview | Artists</title>
+        <meta
+          name='description'
+          content='The artists of Riverview Early Music'
+        />
+      </Head>
       <h1>Our artists</h1>
 
       <ArtistsList>

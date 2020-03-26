@@ -129,7 +129,8 @@ const Nav = () => {
         <Link href='/'>
           <a
             className='logo'
-            alt='logo'
+            alt='Riverview Logo'
+            aria-label='Riverview Home'
             onClick={() => {
               setActive(false)
             }}

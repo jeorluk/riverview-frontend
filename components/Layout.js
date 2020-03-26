@@ -1,6 +1,8 @@
 import React from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import Nav from './Nav'
+import { Html } from 'next/document'
+import Head from 'next/head'
 
 const theme = {
   textLight: '#FFFFFF',
@@ -76,7 +78,6 @@ const Layout = props => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-
       <Nav />
       <Inner>{props.children}</Inner>
       {/* <Footer>This is the footer content!</Footer> */}

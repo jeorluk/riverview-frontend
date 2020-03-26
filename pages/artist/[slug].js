@@ -54,7 +54,8 @@ const artistPage = ({ artist }) => {
   return (
     <ArtistStyles>
       <Head>
-        <title>Riverview Early Music | {name}</title>
+        <meta name='description' content={`Artist information for ${name}`} />
+        <title>Riverview | {name}</title>
       </Head>
       <Link href='/artists'>
         <h1>{`${name}`}</h1>
