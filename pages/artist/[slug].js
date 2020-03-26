@@ -44,24 +44,13 @@ const ArtistCard = styled.div`
     transition: opacity 1s ease-in;
   }
 `
-const query = groq`*[_type == "artist" && slug.current == $slug]{
-  _id,
- name,
- bio,
- featured,
- "image": image.asset->,
- "instruments": instruments[]->{title}
-}[0]`
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
 }
 
 const artistPage = ({ artist }) => {
-  const router = useRouter()
-
   const { name, bio = [], image, featured, instruments, _id } = artist
-  console.log(instruments)
   return (
     <ArtistStyles>
       <Head>
@@ -93,10 +82,31 @@ const artistPage = ({ artist }) => {
   )
 }
 
-artistPage.getInitialProps = async ctx => {
-  const { slug = '' } = ctx.query
+export async function getStaticPaths() {
+  const query = groq`*[_type=="artist"]{"slug": slug.current}`
+  const artistList = await client.fetch(query)
+  const paths = artistList.map(artist => ({
+    params: { slug: artist.slug },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+  const query = groq`*[_type == "artist" && slug.current == $slug]{
+  _id,
+ name,
+ bio,
+ featured,
+ "image": image.asset->,
+ "instruments": instruments[]->{title}
+}[0]`
+
+  const { slug = '' } = params
+  const artist = await client.fetch(query, { slug })
+
   return {
-    artist: await client.fetch(query, { slug }),
+    props: { artist },
   }
 }
 
