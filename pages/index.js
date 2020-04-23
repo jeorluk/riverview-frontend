@@ -29,7 +29,8 @@ const LandingStyle = styled.div`
     fill: ${(props) => props.theme.primaryLight};
     margin: auto;
     height: 50%;
-    width: 50%;
+    width: 600px;
+    max-width: 90%;
   }
 
   a {
