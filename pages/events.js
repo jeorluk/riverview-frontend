@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import client from '../client'
 import Link from 'next/link'
 import SingleEvent from '../components/SingleEvent'
+import Layout from '../components/Layout'
 
 // const query = groq`*[_type == "event"]{
 //     _id,
@@ -23,24 +24,26 @@ const Events = styled.div`
   justify-items: center;
 `
 
-const events = props => {
+const events = (props) => {
   const { eventList = [] } = props
   return (
-    <Events>
-      {eventList.map(event => (
-        <React.Fragment key={event._id}>
-          <Link href='/event/[slug]' as={`/event/${event.slug.current}`}>
-            <a>
-              <SingleEvent event={event} />
-            </a>
-          </Link>
-        </React.Fragment>
-      ))}
-    </Events>
+    <Layout>
+      <Events>
+        {eventList.map((event) => (
+          <React.Fragment key={event._id}>
+            <Link href='/event/[slug]' as={`/event/${event.slug.current}`}>
+              <a>
+                <SingleEvent event={event} />
+              </a>
+            </Link>
+          </React.Fragment>
+        ))}
+      </Events>
+    </Layout>
   )
 }
 
-events.getInitialProps = async ctx => {
+events.getInitialProps = async (ctx) => {
   return {
     eventList: await client.fetch(groq`*[_type == "event"]`),
   }

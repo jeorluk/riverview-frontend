@@ -6,6 +6,7 @@ import BlockContent from '@sanity/block-content-to-react'
 import imageUrlBuilder from '@sanity/image-url'
 import client from '../../client'
 import Link from 'next/link'
+import Layout from '../../components/Layout'
 
 const ArtistStyles = styled.div`
   a {
@@ -22,7 +23,7 @@ const ArtistCard = styled.div`
   padding: 0;
   grid-template-columns: 1fr;
 
-  @media (min-width: ${props => props.theme.tabletBreak}) {
+  @media (min-width: ${(props) => props.theme.tabletBreak}) {
     padding: 1rem;
     grid-template-columns: 1fr 1fr;
   }
@@ -52,41 +53,44 @@ function urlFor(source) {
 const artistPage = ({ artist }) => {
   const { name, bio = [], image, featured, instruments, _id } = artist
   return (
-    <ArtistStyles>
-      <Head>
-        <meta name='description' content={`Artist information for ${name}`} />
-        <title>Riverview | {name}</title>
-      </Head>
-      <Link href='/artists'>
-        <h1>{`${name}`}</h1>
-      </Link>
-      <ArtistCard>
-        <div
-          className='imageCard'
-          style={{
-            backgroundImage: `url(${image.metadata.lqip})`,
-            paddingTop: `calc(100 / ${image.metadata.dimensions.aspectRatio})`,
-          }}
-        >
-          {<img src={urlFor(image).width(400)} alt={name} />}
-        </div>
+    <Layout>
+      <ArtistStyles>
+        <Head>
+          <meta name='description' content={`Artist information for ${name}`} />
+          <title>Riverview | {name}</title>
+        </Head>
+        <Link href='/artists'>
+          <h1>{`${name}`}</h1>
+        </Link>
 
-        <div className='details'>
-          {bio && <BlockContent blocks={bio} />}
-          {instruments &&
-            instruments.map(instrument => (
-              <div key={instrument.title}>{instrument.title}</div>
-            ))}
-        </div>
-      </ArtistCard>
-    </ArtistStyles>
+        <ArtistCard>
+          <div
+            className='imageCard'
+            style={{
+              backgroundImage: `url(${image.metadata.lqip})`,
+              paddingTop: `calc(100 / ${image.metadata.dimensions.aspectRatio})`,
+            }}
+          >
+            {<img src={urlFor(image).width(400)} alt={name} />}
+          </div>
+
+          <div className='details'>
+            {bio && <BlockContent blocks={bio} />}
+            {instruments &&
+              instruments.map((instrument) => (
+                <div key={instrument.title}>{instrument.title}</div>
+              ))}
+          </div>
+        </ArtistCard>
+      </ArtistStyles>
+    </Layout>
   )
 }
 
 export async function getStaticPaths() {
   const query = groq`*[_type=="artist"]{"slug": slug.current}`
   const artistList = await client.fetch(query)
-  const paths = artistList.map(artist => ({
+  const paths = artistList.map((artist) => ({
     params: { slug: artist.slug },
   }))
 

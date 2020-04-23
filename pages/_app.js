@@ -1,12 +1,72 @@
-import Layout from '../components/Layout'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
+config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 // import App from 'next/app'
+const theme = {
+  textLight: '#FFFFFF',
+  textDark: '#000000',
+
+  primaryDark: '#AAAAAA',
+  primary: '#CCCCCC',
+  primaryLight: '#FFFFFF',
+
+  secondaryDark: '#000000',
+  secondary: '#404040',
+  secondaryLight: '#808080',
+
+  tabletBreak: '600px',
+  desktopBreak: '1200px',
+
+  maxWidth: '1000px',
+  maxHeaderHeight: '100px',
+  bs: `0 3px 6px rgba(0,0,0,.7)`,
+}
+
+const GlobalStyle = createGlobalStyle`
+   @font-face {
+     font-family: 'montserrat';
+     src: url('/Montserrat-Regular.ttf') format('truetype');
+     font-weight: normal;
+     font-style: normal;
+     font-color: ${theme.primaryLight};
+   }
+
+   html {
+     /* height: 100vh; */
+     /* width: 100vw; */
+     box-sizing: border-box;
+     font-size: 10px;
+   }
+   *, *:before, *:after {
+     box-sizing: inherit;
+   }
+
+   body {
+     font-family: 'montserrat', monospace;
+     /* overflow-x: hidden; */
+     font-weight: normal;
+     font-style: normal;
+     font-size: 1.5rem;
+     background: ${theme.primaryLight};
+     color: ${theme.textDark};
+     padding: 0;
+     margin: 0;
+   }
+
+   a {
+       text-decoration: none;
+       color: ${theme.textDark};                          
+   }
+`
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <Component {...pageProps} />
-    </Layout>
+    </ThemeProvider>
   )
 }
 

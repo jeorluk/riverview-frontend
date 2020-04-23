@@ -13,20 +13,20 @@ const NavStyles = styled.div`
     align-items: center;
     margin: auto;
     text-transform: uppercase;
-    color: ${props => props.theme.textLight};
+    color: ${(props) => props.theme.textLight};
   }
 
   svg {
-    fill: ${props => props.theme.textLight};
+    fill: ${(props) => props.theme.textLight};
     height: 75px;
-    @media (min-width: ${props => props.theme.tabletBreak}) {
+    @media (min-width: ${(props) => props.theme.tabletBreak}) {
       height: 100px;
     }
   }
 `
 
 const TopNav = styled.div`
-  background: ${props => props.theme.secondaryDark};
+  background: ${(props) => props.theme.secondaryDark};
   position: fixed;
   top: 0;
   width: 100%;
@@ -56,12 +56,12 @@ const TopNav = styled.div`
     display: none;
   }
 
-  @media (min-width: ${props => props.theme.tabletBreak}) {
-    grid-template-columns: repeat(${props => props.numberOfColumns}, 1fr);
+  @media (min-width: ${(props) => props.theme.tabletBreak}) {
+    grid-template-columns: repeat(${(props) => props.numberOfColumns}, 1fr);
     justify-content: space-around;
 
     .logo {
-      grid-column: ${props => props.centerPosition};
+      grid-column: ${(props) => props.centerPosition};
     }
 
     .menuItem {
@@ -77,18 +77,18 @@ const SideNav = styled.div`
   left: 0;
   padding: 0.5rem;
   padding-top: 125px;
-  background-color: ${props => props.theme.secondary};
+  background-color: ${(props) => props.theme.secondary};
   height: 100%;
   width: 100%;
   max-width: 250px;
   transition-duration: 200ms;
   transform: translate(-110%);
-  ${props => props.active && 'transform: translate(0)'};
-  box-shadow: ${props => props.theme.bs};
+  ${(props) => props.active && 'transform: translate(0)'};
+  box-shadow: ${(props) => props.theme.bs};
 
   & a {
     margin-top: 10px;
-    border-bottom: 2px solid ${props => props.theme.textLight};
+    border-bottom: 2px solid ${(props) => props.theme.textLight};
   }
 `
 
@@ -104,7 +104,7 @@ const MenuToggle = styled.div`
 
   display: flex;
   align-items: center;
-  @media (min-width: ${props => props.theme.tabletBreak}) {
+  @media (min-width: ${(props) => props.theme.tabletBreak}) {
     display: none;
   }
 `
@@ -115,7 +115,7 @@ const menuItems = [
   { route: '/contact', name: 'Contact' },
   { route: '/about', name: 'About' },
 ]
-const Nav = () => {
+const Nav = (props) => {
   const [active, setActive] = useState(false)
   const centerPosition = Math.ceil(menuItems.length / 2) + 1
   const numberOfColumns = Math.ceil(menuItems.length / 2) * 2 + 1
@@ -138,17 +138,17 @@ const Nav = () => {
             <RiverviewLogo />
           </a>
         </Link>
-        {menuItems.map(item => (
+        {menuItems.map((item) => (
           <Link key={`topNav${item.name}`} href={item.route}>
             <a className='menuItem'>{item.name}</a>
           </Link>
         ))}
       </TopNav>
       <SideNav active={active}>
-        {menuItems.map(item => (
+        {menuItems.map((item) => (
           <>
             <Link key={`sideNav${item.name}`} href={item.route}>
-              <a onClick={() => setActive(active => !active)}>{item.name}</a>
+              <a onClick={() => setActive((active) => !active)}>{item.name}</a>
             </Link>
           </>
         ))}

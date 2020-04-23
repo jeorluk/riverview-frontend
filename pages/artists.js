@@ -5,6 +5,7 @@ import client from '../client'
 import SingleArtist from '../components/SingleArtist'
 import Link from 'next/link'
 import Head from 'next/head'
+import Layout from '../components/Layout'
 
 const ArtistsStyles = styled.div`
   text-align: center;
@@ -18,40 +19,42 @@ const ArtistsList = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
 
-  @media (min-width: ${props => props.theme.tabletBreak}) {
+  @media (min-width: ${(props) => props.theme.tabletBreak}) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  @media (min-width: ${props => props.theme.desktopBreak}) {
+  @media (min-width: ${(props) => props.theme.desktopBreak}) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `
 
-const artists = props => {
+const artists = (props) => {
   const { artistList = [] } = props
   return (
-    <ArtistsStyles>
-      <Head>
-        <title>Riverview | Artists</title>
-        <meta
-          name='description'
-          content='The artists of Riverview Early Music'
-        />
-      </Head>
-      <h1>Our artists</h1>
+    <Layout>
+      <ArtistsStyles>
+        <Head>
+          <title>Riverview | Artists</title>
+          <meta
+            name='description'
+            content='The artists of Riverview Early Music'
+          />
+        </Head>
+        <h1>Our artists</h1>
 
-      <ArtistsList>
-        {artistList.map(artist => (
-          <React.Fragment key={artist._id}>
-            <Link href='/artist/[slug]' as={`/artist/${artist.slug.current}`}>
-              <a>
-                <SingleArtist artist={artist} />
-              </a>
-            </Link>
-          </React.Fragment>
-        ))}
-      </ArtistsList>
-    </ArtistsStyles>
+        <ArtistsList>
+          {artistList.map((artist) => (
+            <React.Fragment key={artist._id}>
+              <Link href='/artist/[slug]' as={`/artist/${artist.slug.current}`}>
+                <a>
+                  <SingleArtist artist={artist} />
+                </a>
+              </Link>
+            </React.Fragment>
+          ))}
+        </ArtistsList>
+      </ArtistsStyles>
+    </Layout>
   )
 }
 
