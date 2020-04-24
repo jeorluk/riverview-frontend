@@ -7,27 +7,16 @@ import Hamburger from './Hamburger'
 const NavStyles = styled.div`
   width: 100%;
   font-size: 2rem;
-
-  a {
-    display: flex;
-    align-items: center;
-    margin: auto;
-    text-transform: uppercase;
-    color: ${(props) => props.theme.textLight};
-  }
-
-  svg {
-    fill: ${(props) => props.theme.textLight};
-    height: 75px;
-    @media (min-width: ${(props) => props.theme.tabletBreak}) {
-      height: 100px;
-    }
-  }
 `
 
 const TopNav = styled.div`
-  background: ${(props) => props.theme.secondaryDark};
+  /* background: ${(props) => props.theme.secondaryDark}; */
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+  url(${(props) => props.theme.img}) fixed no-repeat;
+  background-position-x: ${(props) => `${props.theme.offset.x * 100}%`};
+  background-position-y: ${(props) => `${props.theme.offset.y * 100}%`};
   position: fixed;
+  /* position: relative; */
   top: 0;
   width: 100%;
   z-index: 999;
@@ -36,8 +25,10 @@ const TopNav = styled.div`
   display: grid;
   grid-auto-flow: column;
   padding: 10px;
+  padding-bottom: 50px;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6vw), 0 100%);
 
-  &::after {
+  /* &::after {
     position: absolute;
     width: 100vw;
     height: 100%;
@@ -50,6 +41,20 @@ const TopNav = styled.div`
     z-index: -5;
     transform-origin: bottom right;
     transform: skewY(-2deg);
+  } */
+  svg {
+    fill: ${(props) => props.theme.textLight};
+    height: 75px;
+    @media (min-width: ${(props) => props.theme.tabletBreak}) {
+      height: 100px;
+    }
+  }
+  a {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    text-transform: uppercase;
+    color: ${(props) => props.theme.textLight};
   }
 
   .menuItem {
@@ -87,6 +92,11 @@ const SideNav = styled.div`
   box-shadow: ${(props) => props.theme.bs};
 
   & a {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    text-transform: uppercase;
+    color: ${(props) => props.theme.textLight};
     margin-top: 10px;
     border-bottom: 2px solid ${(props) => props.theme.textLight};
   }
@@ -121,7 +131,7 @@ const Nav = (props) => {
   const numberOfColumns = Math.ceil(menuItems.length / 2) * 2 + 1
 
   return (
-    <NavStyles>
+    <>
       <MenuToggle>
         <Hamburger active={active} setActive={setActive} />
       </MenuToggle>
@@ -153,7 +163,7 @@ const Nav = (props) => {
           </>
         ))}
       </SideNav>
-    </NavStyles>
+    </>
   )
 }
 

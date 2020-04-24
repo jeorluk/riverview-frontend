@@ -1,10 +1,10 @@
 import groq from 'groq'
 import client from '../client'
-import imageUrlBuilder from '@sanity/image-url'
 import styled from 'styled-components'
 import RiverviewLogo from '../public/RiverviewLogo.svg'
 import Link from 'next/link'
 
+import imageUrlBuilder from '@sanity/image-url'
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
 }
@@ -18,11 +18,13 @@ const LandingStyle = styled.div`
   /* border: 2px solid yellow; */
   height: 100vh;
   /* width: 100%; */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-    url(${(props) => props.img});
-  background-size: cover;
-  background-position-x: ${(props) => `${props.offset.x * 100}%`};
-  background-position-x: ${(props) => `${props.offset.y * 100}%`};
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url(${(props) => props.img}); */
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url(${(props) => props.theme.img}) fixed no-repeat;
+  /* background-size: cover; */
+  background-position-x: ${(props) => `${props.theme.offset.x * 100}%`};
+  background-position-y: ${(props) => `${props.theme.offset.y * 100}%`};
 
   svg {
     display: block;
@@ -44,11 +46,10 @@ const LandingStyle = styled.div`
 `
 
 const Index = ({ settings }) => {
-  console.log(settings)
   return (
     <LandingStyle
-      img={urlFor(settings.banner).format('jpg').auto('format').url()}
-      offset={settings.banner.hotspot}
+    // img={urlFor(settings.banner).format('jpg').auto('format').url()}
+    // offset={settings.banner.hotspot}
     >
       <RiverviewLogo />
       <Link href='./about'>

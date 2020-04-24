@@ -8,24 +8,29 @@ const LayoutStyles = styled.div`
   display: grid;
   grid-template-rows: auto 1fr auto;
 `
+const Main = styled.div`
+background: white;
+  /* background: url(${(props) => props.theme.img}) fixed no-repeat;
+  background-position-x: ${(props) => `${props.theme.offset.x * 100}%`};
+  background-position-y: ${(props) => `${props.theme.offset.y * 100}%`}; */
+`
 
 const Inner = styled.div`
   max-width: ${(props) => props.theme.maxWidth};
-
   margin: 0 auto;
-  margin-top: 125px;
+  margin-top: 175px;
   padding: 0;
-
-  @media (min-width: ${(props) => props.theme.tabletBreak}) {
-    margin-top: 175px;
-  }
 `
 
 const Layout = (props) => {
   return (
     <LayoutStyles>
-      <Nav />
-      <Inner>{props.children}</Inner>
+      <div>
+        <Nav />
+      </div>
+      <Main>
+        <Inner>{props.children}</Inner>
+      </Main>
       <Footer />
     </LayoutStyles>
   )
