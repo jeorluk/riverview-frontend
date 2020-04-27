@@ -3,8 +3,8 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import groq from 'groq'
 import BlockContent from '@sanity/block-content-to-react'
-import imageUrlBuilder from '@sanity/image-url'
 import client from '../../client'
+import urlFor from '../../util/urlFor'
 
 const EventStyles = styled.div`
   max-width: 1200px;
@@ -36,10 +36,6 @@ date,
 program,
 }[0]`
 
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source)
-}
-
 const eventPage = ({ event }) => {
   const router = useRouter()
 
@@ -58,12 +54,7 @@ const eventPage = ({ event }) => {
         <meta name='description' content={`Event information for ${name}`} />
         <title>Riverview Early Music | {name}</title>
       </Head>
-      <img
-        src={urlFor(image)
-          .width(800)
-          .url()}
-        alt={name}
-      />
+      <img src={urlFor(image).width(800).url()} alt={name} />
       {new Intl.DateTimeFormat('en-US', {
         weekday: 'long',
         year: 'numeric',
@@ -83,7 +74,7 @@ const eventPage = ({ event }) => {
   )
 }
 
-eventPage.getInitialProps = async ctx => {
+eventPage.getInitialProps = async (ctx) => {
   const { slug = '' } = ctx.query
   return {
     event: await client.fetch(query, { slug }),

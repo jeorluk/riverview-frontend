@@ -4,11 +4,6 @@ import styled from 'styled-components'
 import RiverviewLogo from '../public/RiverviewLogo.svg'
 import Link from 'next/link'
 
-import imageUrlBuilder from '@sanity/image-url'
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source)
-}
-
 const LandingStyle = styled.div`
   /* display: grid; */
   text-align: center;
@@ -20,11 +15,11 @@ const LandingStyle = styled.div`
   /* width: 100%; */
   /* background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
     url(${(props) => props.img}); */
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-    url(${(props) => props.theme.img}) fixed no-repeat;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url(${(props) => props.theme.img}) fixed no-repeat; */
   /* background-size: cover; */
-  background-position-x: ${(props) => `${props.theme.offset.x * 100}%`};
-  background-position-y: ${(props) => `${props.theme.offset.y * 100}%`};
+  /* background-position-x: ${(props) => `${props.theme.offset.x * 100}%`}; */
+  /* background-position-y: ${(props) => `${props.theme.offset.y * 100}%`}; */
 
   svg {
     display: block;

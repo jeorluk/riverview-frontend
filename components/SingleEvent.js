@@ -1,11 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import imageUrlBuilder from '@sanity/image-url'
-import client from '../client'
-
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source)
-}
+import urlFor from '../util/urlFor'
 
 const SingleEventStyles = styled.div`
   /* width: 100%;
@@ -27,10 +22,7 @@ const SingleEvent = ({ event }) => {
   return (
     <SingleEventStyles key={event._id}>
       <img
-        src={urlFor(event.image)
-          .width(200)
-          .fit('max')
-          .url()}
+        src={urlFor(event.image).width(200).fit('max').url()}
         alt={event.name}
       />
 

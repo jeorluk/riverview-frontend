@@ -3,15 +3,11 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import groq from 'groq'
 import client from '../client'
+import urlFor from '../util/urlFor'
 
-import imageUrlBuilder from '@sanity/image-url'
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
 import PageBackground from '../components/PageBackground'
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
-
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source)
-}
 
 function MyApp({ Component, pageProps, settings }) {
   console.log(settings)
@@ -31,7 +27,8 @@ function MyApp({ Component, pageProps, settings }) {
     desktopBreak: '1200px',
 
     maxWidth: '1000px',
-    maxHeaderHeight: '100px',
+    mobileHeaderHeight: '125px',
+    headerHeight: '175px',
     bs: `0 3px 6px rgba(0,0,0,.7)`,
 
     img: urlFor(settings.banner).format('jpg').auto('format').url(),

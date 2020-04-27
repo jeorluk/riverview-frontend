@@ -3,10 +3,10 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import groq from 'groq'
 import BlockContent from '@sanity/block-content-to-react'
-import imageUrlBuilder from '@sanity/image-url'
 import client from '../../client'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
+import urlFor from '../../util/urlFor'
 
 const ArtistStyles = styled.div`
   a {
@@ -46,9 +46,6 @@ const ArtistCard = styled.div`
   }
 `
 
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source)
-}
 
 const artistPage = ({ artist }) => {
   const { name, bio = [], image, featured, instruments, _id } = artist

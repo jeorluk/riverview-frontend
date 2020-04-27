@@ -18,7 +18,7 @@ background: white;
 const Inner = styled.div`
   max-width: ${(props) => props.theme.maxWidth};
   margin: 0 auto;
-  margin-top: 175px;
+  margin-top: ${(props) => props.theme.headerHeight};
   padding: 0;
 `
 
