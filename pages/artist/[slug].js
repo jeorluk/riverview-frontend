@@ -46,7 +46,6 @@ const ArtistCard = styled.div`
   }
 `
 
-
 const artistPage = ({ artist }) => {
   const { name, bio = [], image, featured, instruments, _id } = artist
   return (

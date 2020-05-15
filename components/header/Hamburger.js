@@ -16,7 +16,7 @@ const HamburgerIcon = styled.div`
   div {
     width: 100%;
     height: 0.5rem;
-    background: ${props => props.theme.textLight};
+    background: ${(props) => props.theme.color.lightShade};
     border-radius: 10px;
     transition: all 0.3s linear;
     transform-origin: 1px;

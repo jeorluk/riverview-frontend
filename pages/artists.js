@@ -6,12 +6,13 @@ import SingleArtist from '../components/SingleArtist'
 import Link from 'next/link'
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import { motion } from 'framer-motion'
 
 const ArtistsStyles = styled.div`
   text-align: center;
 `
 
-const ArtistsList = styled.div`
+const ArtistsList = styled(motion.div)`
   margin: auto;
   padding: 1rem;
   display: grid;
@@ -28,6 +29,16 @@ const ArtistsList = styled.div`
   }
 `
 
+const container = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+}
+
+const item = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+}
+
 const artists = (props) => {
   const { artistList = [] } = props
   return (
@@ -42,15 +53,15 @@ const artists = (props) => {
         </Head>
         <h1>Our artists</h1>
 
-        <ArtistsList>
+        <ArtistsList variants={container} initial='hidden' animate='show'>
           {artistList.map((artist) => (
-            <React.Fragment key={artist._id}>
+            <motion.div variants={item} key={artist._id}>
               <Link href='/artist/[slug]' as={`/artist/${artist.slug.current}`}>
                 <a>
                   <SingleArtist artist={artist} />
                 </a>
               </Link>
-            </React.Fragment>
+            </motion.div>
           ))}
         </ArtistsList>
       </ArtistsStyles>

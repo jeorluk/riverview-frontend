@@ -1,17 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons'
+import { SubscribeButton, DonateButton } from './Buttons'
+import SocialLinks from './SocialLinks'
 
 const FooterStyles = styled.footer`
-  background: black;
-  color: white;
+  background: ${({ theme }) => theme.color.darkShade};
+  color: ${({ theme }) => theme.color.main};
+
+  a {
+    color: ${({ theme }) => theme.color.lightShade};
+  }
 `
 const Footer = () => {
   return (
     <FooterStyles>
-      <FontAwesomeIcon icon={faFacebookSquare} size='2x' />
-      This is the footer content!
+      <SubscribeButton />
+      <DonateButton />
+      <SocialLinks />
     </FooterStyles>
   )
 }

@@ -1,36 +1,37 @@
 import React from 'react'
 import styled from 'styled-components'
-import Nav from './Nav'
+import Header from './header/Header'
 import Footer from './Footer'
 
 const LayoutStyles = styled.div`
-  min-height: 100vh;
+  height: 100vh;
+  padding: 0;
+  overflow: scroll;
+  /* background: url(${(props) => props.theme.img}); */
+  background-size: cover;
+  /* background-position-x: ${(props) => `${props.theme.offset.x * 100}%`}; */
+  /* background-position-x: ${(props) => `${props.theme.offset.y * 100}%`}; */
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows:
+    calc(
+      ${(props) => props.theme.mediaBarHeight} +
+        ${(props) => props.theme.navBarHeight}
+    )
+    1fr auto;
 `
-const Main = styled.div`
-background: white;
-  /* background: url(${(props) => props.theme.img}) fixed no-repeat;
-  background-position-x: ${(props) => `${props.theme.offset.x * 100}%`};
-  background-position-y: ${(props) => `${props.theme.offset.y * 100}%`}; */
-`
-
 const Inner = styled.div`
+  width: 100%;
+  background: rgba(255, 255, 255, 0.6);
   max-width: ${(props) => props.theme.maxWidth};
   margin: 0 auto;
-  margin-top: ${(props) => props.theme.headerHeight};
   padding: 0;
 `
 
 const Layout = (props) => {
   return (
     <LayoutStyles>
-      <div>
-        <Nav />
-      </div>
-      <Main>
-        <Inner>{props.children}</Inner>
-      </Main>
+      <Header />
+      <Inner>{props.children}</Inner>
       <Footer />
     </LayoutStyles>
   )

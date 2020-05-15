@@ -3,6 +3,7 @@ import client from '../client'
 import styled from 'styled-components'
 import RiverviewLogo from '../public/RiverviewLogo.svg'
 import Link from 'next/link'
+import Layout from '../components/Layout'
 
 const LandingStyle = styled.div`
   /* display: grid; */
@@ -42,21 +43,9 @@ const LandingStyle = styled.div`
 
 const Index = ({ settings }) => {
   return (
-    <LandingStyle
-    // img={urlFor(settings.banner).format('jpg').auto('format').url()}
-    // offset={settings.banner.hotspot}
-    >
-      <RiverviewLogo />
-      <Link href='./about'>
-        <a>FIND OUT MORE</a>
-      </Link>
-      {/* <h1>This is the home page.</h1>
-      <ul>
-        <li>A banner at the top that scrolls </li>
-        <li>A list of concerts </li>
-        <li>Special announcements</li>
-      </ul> */}
-    </LandingStyle>
+    <Layout>
+      <h1>This is the main page.</h1>
+    </Layout>
   )
 }
 
