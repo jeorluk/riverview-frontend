@@ -13,7 +13,7 @@ const NavStyles = styled.div`
     color: ${(props) => props.theme.color.lightShade};
   }
 
-  width: 100%;
+  /* width: 100%; */
   display: grid;
   grid-template-rows: ${(props) => props.theme.navBarHeight} auto;
   grid-template-columns: 50px 1fr 50px;
