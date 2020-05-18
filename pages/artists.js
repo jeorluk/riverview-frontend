@@ -35,8 +35,8 @@ const container = {
 }
 
 const item = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
+  hidden: { y: 20, opacity: 0 },
+  show: { y: 0, opacity: 1 },
 }
 
 const artists = (props) => {

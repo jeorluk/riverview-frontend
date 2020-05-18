@@ -7,58 +7,35 @@ import { motion } from 'framer-motion'
 
 const NavStyles = styled.div`
   display: grid;
-  grid-template-columns: 50px 1fr 50px;
-  grid-template-areas: '. logo menubutton';
+  grid-template-columns: 1fr auto;
+  background: ${(props) => props.theme.color.darkShade};
+`
+
+const NavList = styled(motion.ul)`
+  display: grid;
+  min-height: ${(props) => props.theme.navBarHeight};
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 2em;
+  color: ${(props) => props.theme.color.lightShade};
+
   a {
     color: ${(props) => props.theme.color.lightShade};
   }
-
-  /* width: 100%; */
-  display: grid;
-  grid-template-rows: ${(props) => props.theme.navBarHeight} auto;
-  grid-template-columns: 50px 1fr 50px;
-  grid-template-areas: '. logo menubutton';
 
   svg {
+    padding: 2px;
     fill: ${(props) => props.theme.color.lightShade};
-    height: 100%;
-  }
-  .logo {
-    grid-area: logo;
-    margin: 5px auto;
+    height: ${(props) => props.theme.navBarHeight};
   }
 
   @media (min-width: ${(props) => props.theme.desktopBreak}) {
-    grid-template-columns: auto 1fr;
-    grid-template-areas: 'logo navlinks';
+    grid-auto-flow: column;
   }
 `
-const NavLinks = styled.div`
-  display: none;
-  grid-area: navlinks;
-  height: 100%;
-  width: 100%;
-  @media (min-width: ${(props) => props.theme.desktopBreak}) {
-    display: block;
-  }
-`
-const NavDrawer = styled(motion.div)`
-  position: absolute;
-  top: calc(
-    ${(props) => props.theme.navBarHeight} +
-      ${(props) => props.theme.mediaBarHeight}
-  );
-  left: 0;
-  width: 100vw;
-  background: ${(props) => props.theme.color.darkShade};
-  a {
-    color: ${(props) => props.theme.color.lightShade};
-  }
-`
-
 const MenuToggle = styled.div`
-  grid-area: menubutton;
-  align-self: center;
   padding: 0.5rem;
   height: 5rem;
   width: 5rem;
@@ -67,81 +44,57 @@ const MenuToggle = styled.div`
     display: none;
   }
 `
-const NavItems = styled(motion.ul)`
-  grid-area: navlinks;
-  display: grid;
-  list-style: none;
-  font-size: 2em;
-  @media (min-width: ${(props) => props.theme.desktopBreak}) {
-    grid-auto-flow: column;
-  }
-`
-const NavList = () => {
-  return (
-    <NavItems>
-      <li>
-        <Link href='/artists'>
-          <a>Artists</a>
-        </Link>
-      </li>
-      <li>
-        <Link href='/programs'>
-          <a>Programs</a>
-        </Link>
-      </li>
-      <li>
-        <Link href='/events'>
-          <a>Events</a>
-        </Link>
-      </li>
-      <li>
-        <Link href='/media'>
-          <a>Media</a>
-        </Link>
-      </li>
-      <li>
-        <Link href='/contact'>
-          <a>Contact</a>
-        </Link>
-      </li>
-    </NavItems>
-  )
+const variants = {
+  open: { height: 'auto' },
+  closed: { height: 0 },
 }
 
 const Nav = () => {
-  const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false)
-
+  const [isNavOpen, setIsNavOpen] = useState(false)
   return (
-    <>
-      <NavStyles>
-        <Link href='/'>
-          <a
-            className='logo'
-            alt='Riverview Logo'
-            aria-label='Riverview Home'
-            onClick={() => {
-              setIsNavDrawerOpen(false)
-            }}
-          >
-            <RiverviewLogo />
-          </a>
-        </Link>
-        <NavLinks>
-          <NavList />
-        </NavLinks>
-        <MenuToggle>
-          <Hamburger active={isNavDrawerOpen} setActive={setIsNavDrawerOpen} />
-        </MenuToggle>
-      </NavStyles>
-      {isNavDrawerOpen && (
-        <NavDrawer
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-        >
-          <NavList />
-        </NavDrawer>
-      )}
-    </>
+    <NavStyles>
+      <NavList
+        variants={variants}
+        initial='closed'
+        animate={isNavOpen ? 'open' : 'closed'}
+      >
+        <li>
+          <Link href='/'>
+            <a>
+              <RiverviewLogo />
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href='/artists'>
+            <a>Artists</a>
+          </Link>
+        </li>
+        <li>
+          <Link href='/programs'>
+            <a>Programs</a>
+          </Link>
+        </li>
+        <li>
+          <Link href='/events'>
+            <a>Events</a>
+          </Link>
+        </li>
+        <li>
+          <Link href='/media'>
+            <a>Media</a>
+          </Link>
+        </li>
+        <li>
+          <Link href='/contact'>
+            <a>Contact</a>
+          </Link>
+        </li>
+      </NavList>
+      <MenuToggle>
+        <Hamburger active={isNavOpen} setActive={setIsNavOpen} />
+      </MenuToggle>
+    </NavStyles>
   )
 }
 
