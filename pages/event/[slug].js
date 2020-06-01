@@ -5,6 +5,7 @@ import groq from 'groq'
 import BlockContent from '@sanity/block-content-to-react'
 import client from '../../client'
 import urlFor from '../../util/urlFor'
+import Layout from '../../components/Layout'
 
 const EventStyles = styled.div`
   max-width: 1200px;
@@ -26,15 +27,6 @@ const EventStyles = styled.div`
     font-size: 2rem;
   }
 `
-const query = groq`*[_type == "event" && slug.current == $slug]{
-  _id,
- name,
- description,
-image,
-ticketLink,
-date,
-program,
-}[0]`
 
 const eventPage = ({ event }) => {
   const router = useRouter()
@@ -49,35 +41,59 @@ const eventPage = ({ event }) => {
     _id,
   } = event
   return (
-    <EventStyles>
-      <Head>
-        <meta name='description' content={`Event information for ${name}`} />
-        <title>Riverview Early Music | {name}</title>
-      </Head>
-      <img src={urlFor(image).width(800).url()} alt={name} />
-      {new Intl.DateTimeFormat('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        timeZone: 'America/New_York',
-      }).format(new Date(event.date))}
-      <div className='details'>
-        <BlockContent blocks={description} />
-      </div>
-      <a href={ticketLink} target='_blank'>
-        Purchase Tickets Here
-      </a>
-    </EventStyles>
+    <Layout title={name}>
+      <EventStyles>
+        <Head>
+          <meta name='description' content={`Event information for ${name}`} />
+          <title>Riverview Early Music | {name}</title>
+        </Head>
+        <img src={urlFor(image).width(800).url()} alt={name} />
+        {new Intl.DateTimeFormat('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          timeZone: 'America/New_York',
+        }).format(new Date(event.date))}
+        <div className='details'>
+          <BlockContent blocks={description} />
+        </div>
+        <a href={ticketLink} target='_blank'>
+          Purchase Tickets Here
+        </a>
+      </EventStyles>
+    </Layout>
   )
 }
 
-eventPage.getInitialProps = async (ctx) => {
-  const { slug = '' } = ctx.query
+export async function getStaticPaths() {
+  const query = groq`*[_type=="event"]{"slug": slug.current}`
+  const eventList = await client.fetch(query)
+  const paths = eventList.map((event) => ({
+    params: { slug: event.slug },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+  const { slug = '' } = params
+  const query = groq`*[_type == "event" && slug.current == $slug]{
+    _id,
+    name,
+    description,
+    image,
+    ticketLink,
+    date,
+    program,
+  }[0]`
+
+  const event = await client.fetch(query, { slug })
+
   return {
-    event: await client.fetch(query, { slug }),
+    props: { event },
   }
 }
 

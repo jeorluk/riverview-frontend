@@ -44,8 +44,6 @@ a {
 `
 
 function MyApp({ Component, pageProps, settings }) {
-  console.log(settings)
-
   return (
     <ThemeProvider theme={settings.theme}>
       <BackgroundProvider value={true}>
