@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Header from './header/Header'
 import Footer from './Footer'
 
@@ -17,8 +17,18 @@ const LayoutStyles = styled.div`
       ${(props) => props.theme.mediaBarHeight} +
         ${(props) => props.theme.navBarHeight}
     )
-    1fr auto;
+    auto 1fr auto;
 `
+
+const PageTitle = styled.h1(
+  ({ theme }) => css`
+    background-color: ${theme.color.darkShade};
+    color: ${theme.color.lightShade};
+    text-align: center;
+    margin: 0;
+  `
+)
+
 const Inner = styled.div`
   width: 100%;
   background: rgba(255, 255, 255, 0.6);
@@ -27,11 +37,12 @@ const Inner = styled.div`
   padding: 0;
 `
 
-const Layout = (props) => {
+const Layout = ({ title, children }) => {
   return (
     <LayoutStyles>
       <Header />
-      <Inner>{props.children}</Inner>
+      <PageTitle>{title}</PageTitle>
+      <Inner>{children}</Inner>
       <Footer />
     </LayoutStyles>
   )

@@ -49,14 +49,14 @@ const ArtistCard = styled.div`
 const artistPage = ({ artist }) => {
   const { name, bio = [], image, featured, instruments, _id } = artist
   return (
-    <Layout>
+    <Layout title={name}>
       <ArtistStyles>
         <Head>
           <meta name='description' content={`Artist information for ${name}`} />
           <title>Riverview | {name}</title>
         </Head>
         <Link href='/artists'>
-          <h1>{`${name}`}</h1>
+          <h1>{`<--`}</h1>
         </Link>
 
         <ArtistCard>

@@ -8,9 +8,21 @@ import { motion } from 'framer-motion'
 const NavStyles = styled.nav(
   ({ theme }) => css`
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto auto;
+    /* grid-auto-flow: row; */
+    justify-content: space-between;
     background: ${theme.color.darkShade};
-    height: ${theme.navBarHeight};
+    /* height: ${theme.navBarHeight}; */
+
+    svg {
+      padding: 2px;
+      fill: ${theme.color.lightShade};
+      height: ${theme.navBarHeight};
+    }
+
+    /* @media (max-width: ${theme.desktopBreak}) {
+      grid-auto-flow: column;
+    } */
   `
 )
 
@@ -18,31 +30,26 @@ const DesktopNav = styled.ul(
   ({ theme }) => css`
     margin: 0;
     padding: 0;
-    height: ${theme.navBarHeight};
     display: grid;
-    gap: 1em;
-    justify-content: flex-start;
-    font-size: 2em;
-    list-style: none;
     grid-auto-flow: column;
+    font-size: 1.5em;
+    list-style: none;
 
-    li:not(:first-child) {
+    li {
+      text-align: center;
+      padding: 0 0.5em;
       margin: auto;
-      display: none;
     }
-    @media (min-width: ${theme.desktopBreak}) {
-      li:not(:first-child) {
-        display: block;
-      }
+    li:not(:first-child) {
+      border-left: 1px solid ${theme.color.lightShade};
     }
+
     a {
       color: ${theme.color.lightShade};
     }
 
-    svg {
-      padding: 2px;
-      fill: ${theme.color.lightShade};
-      height: ${theme.navBarHeight};
+    @media (max-width: ${theme.desktopBreak}) {
+      display: none;
     }
   `
 )
@@ -50,6 +57,7 @@ const NavDrawer = styled(motion.ul)(
   ({ theme }) => css`
     grid-column: span 2;
     margin: 0;
+    padding-left: 0.5em;
     list-style: none;
     font-size: 2em;
     background: ${theme.color.darkShade};
@@ -70,9 +78,6 @@ const MenuToggle = styled.div`
   }
 `
 const list = {
-  // initial: {
-  //   height: 0,
-  // },
   open: {
     height: 'auto',
     transition: {
@@ -93,10 +98,6 @@ const list = {
 }
 
 const items = {
-  // initial: {
-  //   opacity: 0,
-  //   x: '-100%',
-  // },
   open: {
     opacity: 1,
     x: 0,
@@ -107,7 +108,6 @@ const items = {
     },
   },
   closed: { opacity: 0, x: '-100%' },
-  // closed: { opacity: 0, x: '-100%' },
 }
 
 const menuItems = [
@@ -122,14 +122,12 @@ const Nav = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   return (
     <NavStyles>
+      <Link href='/'>
+        <motion.a>
+          <RiverviewLogo />
+        </motion.a>
+      </Link>
       <DesktopNav>
-        <li>
-          <Link href='/'>
-            <a>
-              <RiverviewLogo />
-            </a>
-          </Link>
-        </li>
         {menuItems.map((item) => {
           return (
             <li key={`desktop${item.text}`}>

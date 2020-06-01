@@ -3,8 +3,8 @@ import Layout from '../components/Layout'
 
 const contact = () => {
   return (
-    <Layout>
-      <h1>Contact info goes here!</h1>
+    <Layout title='Contact Us'>
+      This will be a form that can be filled out to contact us.
     </Layout>
   )
 }

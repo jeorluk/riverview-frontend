@@ -42,7 +42,7 @@ const item = {
 const artists = (props) => {
   const { artistList = [] } = props
   return (
-    <Layout>
+    <Layout title='Our Artists'>
       <ArtistsStyles>
         <Head>
           <title>Riverview | Artists</title>
@@ -51,7 +51,6 @@ const artists = (props) => {
             content='The artists of Riverview Early Music'
           />
         </Head>
-        <h1>Our artists</h1>
 
         <ArtistsList variants={container} initial='hidden' animate='show'>
           {artistList.map((artist) => (
