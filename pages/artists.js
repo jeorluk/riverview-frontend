@@ -10,23 +10,26 @@ import { motion } from 'framer-motion'
 
 const ArtistsStyles = styled.div`
   text-align: center;
+  margin: 1rem;
 `
 
 const ArtistsList = styled(motion.div)`
   margin: auto;
-  padding: 1rem;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-
+  /* padding: 1rem; */
+  display: flex;
+  flex-wrap: wrap;
+  
+  /* gap: 1rem; */
+  /* grid-template-columns: 1fr 1fr; */
+  justify-content: center;
+/* 
   @media (min-width: ${(props) => props.theme.tabletBreak}) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
   @media (min-width: ${(props) => props.theme.desktopBreak}) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
+  } */
 `
 
 const container = {

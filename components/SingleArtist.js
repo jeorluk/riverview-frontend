@@ -1,9 +1,12 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import urlFor from '../util/urlFor'
 
 const SingleArtistStyles = styled.div`
   /* width: 100%; */
+  flex-grow: auto;
+  width: 300px;
+  margin: 1rem;
 
   .holder {
     display: flex;
@@ -20,6 +23,14 @@ const SingleArtistStyles = styled.div`
     margin: 0;
   }
 `
+
+const ArtistName = styled.div(
+  ({ theme }) => css`
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+  `
+)
 
 const SingleArtist = ({ artist }) => {
   return (
@@ -43,8 +54,7 @@ const SingleArtist = ({ artist }) => {
           />
         }
       </div>
-
-      <p>{artist.name}</p>
+      <ArtistName>{artist.name}</ArtistName>
     </SingleArtistStyles>
   )
 }
