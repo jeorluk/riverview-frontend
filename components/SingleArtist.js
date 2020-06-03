@@ -54,8 +54,17 @@ const Mask = styled(motion.div)`
   color: ${(props) => props.theme.color.lightShade};
 `
 const maskVariants = {
-  visible: { opacity: 0.9, y: 0 },
-  hidden: { opacity: 0, y: '80%' },
+  visible: {
+    opacity: 0.9,
+    y: 0,
+    transition: { ease: 'easeOut', duration: 0.3 },
+  },
+
+  hidden: {
+    opacity: 0,
+    y: '100%',
+    transition: { ease: 'easeOut', duration: 0.3 },
+  },
 }
 
 const SingleArtist = ({ artist, hoveredArtist, setHoveredArtist }) => {
