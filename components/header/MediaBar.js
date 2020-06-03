@@ -8,17 +8,17 @@ const MediaBarStyles = styled.div`
   display: grid;
   grid-auto-flow: column;
   justify-content: flex-end;
-  background-color: ${(props) => props.theme.color.main};
+  background-color: ${(props) => props.theme.color.darkShade};
   a {
-    color: ${(props) => props.theme.color.darkShade};
+    color: ${(props) => props.theme.color.lightShade};
   }
 `
 const MediaBar = () => {
   return (
     <MediaBarStyles>
       <SocialLinks />
-      <SubscribeButton invert />
-      <DonateButton invert />
+      <SubscribeButton />
+      <DonateButton />
     </MediaBarStyles>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import groq from 'groq'
 import styled from 'styled-components'
 import client from '../client'
@@ -44,6 +44,8 @@ const item = {
 
 const artists = (props) => {
   const { artistList = [] } = props
+  const [hoveredArtist, setHoveredArtist] = useState(0)
+
   return (
     <Layout title='Our Artists'>
       <ArtistsStyles>
@@ -58,11 +60,11 @@ const artists = (props) => {
         <ArtistsList variants={container} initial='hidden' animate='show'>
           {artistList.map((artist) => (
             <motion.div variants={item} key={artist._id}>
-              <Link href='/artist/[slug]' as={`/artist/${artist.slug.current}`}>
-                <a>
-                  <SingleArtist artist={artist} />
-                </a>
-              </Link>
+              <SingleArtist
+                artist={artist}
+                hoveredArtist={hoveredArtist}
+                setHoveredArtist={setHoveredArtist}
+              />
             </motion.div>
           ))}
         </ArtistsList>
@@ -76,6 +78,7 @@ export async function getStaticProps() {
     _id,
     slug,
    name,
+   intro,
    featured,
    image,
    "imageMeta": image.asset->,
