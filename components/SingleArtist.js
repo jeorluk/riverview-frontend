@@ -66,7 +66,6 @@ const SingleArtist = ({ artist, hoveredArtist, setHoveredArtist }) => {
       intitial={isHovered ? 'visible' : 'hidden'}
       onHoverStart={() => setHoveredArtist(artist._id)}
       onHoverEnd={() => setHoveredArtist(0)}
-      onTapStart={() => setHoveredArtist(0)}
       onTap={() => setHoveredArtist(artist._id)}
       animate={isHovered ? 'visible' : 'hidden'}
     >
