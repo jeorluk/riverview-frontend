@@ -27,7 +27,7 @@ const Events = styled.div`
 const events = (props) => {
   const { eventList = [] } = props
   return (
-    <Layout title='Events'>
+    <Layout>
       <Events>
         {eventList.map((event) => (
           <React.Fragment key={event._id}>

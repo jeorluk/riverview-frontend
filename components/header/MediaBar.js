@@ -8,7 +8,7 @@ const MediaBarStyles = styled.div`
   display: grid;
   grid-auto-flow: column;
   justify-content: flex-end;
-  background-color: ${(props) => props.theme.color.darkShade};
+  background-color: ${(props) => props.theme.color.darkAccent};
   a {
     color: ${(props) => props.theme.color.lightShade};
   }

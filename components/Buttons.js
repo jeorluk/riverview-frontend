@@ -6,15 +6,14 @@ const Button = styled.button`
   /* padding: 0; */
   font-size: 1em;
   font-weight: bold;
-  font-variant: small-caps;
   border: 0;
   background: transparent;
   color: ${({ invert, theme }) =>
-    invert ? theme.color.main : theme.color.darkShade};
+    invert ? theme.color.main : theme.color.lightShade};
 
-  background: ${({ invert, theme }) =>
+  /* background: ${({ invert, theme }) =>
     invert ? theme.color.darkShade : theme.color.lightShade};
-  border-radius: 2em;
+  border-radius: 2em; */
 
   &:hover {
     color: ${({ theme }) => theme.color.lightShade};
@@ -30,7 +29,7 @@ export const SubscribeButton = (props) => {
         alert('Subscription workflow')
       }}
     >
-      Join our mailing list
+      JOIN OUR MAILING LIST
     </Button>
   )
 }
@@ -43,7 +42,7 @@ export const DonateButton = (props) => {
         alert('Donate workflow')
       }}
     >
-      Support Us
+      SUPPORT US
     </Button>
   )
 }

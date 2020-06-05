@@ -7,38 +7,37 @@ import { motion } from 'framer-motion'
 
 const NavStyles = styled.nav(
   ({ theme }) => css`
+    margin: 0 auto;
+    max-width: ${theme.maxContentWidth};
     display: grid;
     grid-template-columns: auto auto;
-    /* grid-auto-flow: row; */
     justify-content: space-between;
-    background: ${theme.color.darkShade};
-    /* height: ${theme.navBarHeight}; */
 
     svg {
-      padding: 2px;
+      padding: 1rem 0;
       fill: ${theme.color.lightShade};
       height: ${theme.navBarHeight};
     }
-
-    /* @media (max-width: ${theme.desktopBreak}) {
-      grid-auto-flow: column;
-    } */
   `
 )
 
 const DesktopNav = styled.ul(
   ({ theme }) => css`
     margin: 0;
-    padding: 0;
+    padding-bottom: 2rem;
     display: grid;
     grid-auto-flow: column;
+    align-content: flex-end;
     font-size: 1.5em;
+    font-weight: 1000;
+
     list-style: none;
 
     li {
       text-align: center;
       padding: 0 0.5em;
       margin: auto;
+      /* border: 2px solid yellow; */
     }
     li:not(:first-child) {
       border-left: 1px solid ${theme.color.lightShade};
@@ -53,21 +52,22 @@ const DesktopNav = styled.ul(
     }
   `
 )
-const NavDrawer = styled(motion.ul)(
-  ({ theme }) => css`
-    grid-column: span 2;
-    margin: 0;
-    padding-left: 0.5em;
-    list-style: none;
-    font-size: 2em;
-    background: ${theme.color.darkShade};
-    color: ${theme.color.lightShade};
+const NavDrawer = styled(motion.ul)``
+// ({ theme }) => css`
+// position: absolutel
+//   grid-column: span 2;
+//   margin: 0;
+//   padding-left: 0.5em;
+//   list-style: none;
+//   font-size: 2em;
+//   background: ${theme.color.darkShade};
+//   color: ${theme.color.lightShade};
 
-    a {
-      color: ${theme.color.lightShade};
-    }
-  `
-)
+//   a {
+//     color: ${theme.color.lightShade};
+//   }
+// `
+// )
 const MenuToggle = styled.div`
   padding: 0.5rem;
   height: 5rem;
@@ -123,9 +123,9 @@ const Nav = () => {
   return (
     <NavStyles>
       <Link href='/'>
-        <motion.a>
+        <a>
           <RiverviewLogo />
-        </motion.a>
+        </a>
       </Link>
       <DesktopNav>
         {menuItems.map((item) => {

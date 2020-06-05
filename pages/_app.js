@@ -30,8 +30,10 @@ html {
 
 body {
   font-family: 'montserrat', monospace;
+  background: url('../public/tablature.jpg');
+  /* font-family: "arial"; */
   /* overflow-x: hidden; */
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
   font-size: 1.5rem;
   padding: 0;

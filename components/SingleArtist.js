@@ -50,7 +50,7 @@ const Mask = styled(motion.div)`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: ${(props) => props.theme.color.darkShade};
+  background: ${(props) => props.theme.color.main};
   color: ${(props) => props.theme.color.lightShade};
 `
 const maskVariants = {
