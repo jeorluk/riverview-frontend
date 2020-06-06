@@ -7,8 +7,8 @@ const LayoutStyles = styled.div`
   height: 100vh;
   padding: 0;
   overflow: scroll;
-  background: url('/blankBackground.jpg');
-  background-size: cover;
+  /* background: url('/blankBackground.jpg'); */
+  /* background-size: cover; */
   /* background-position: -100px; */
   @media (min-width: ${(props) => props.theme.desktopBreak}){
 

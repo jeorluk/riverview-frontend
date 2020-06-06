@@ -7,26 +7,29 @@ import { useRef } from 'react'
 
 const ProgramStyles = styled(motion.div)`
   border-bottom: 1px solid ${(props) => props.theme.color.darkShade};
-  max-width: 800px;
+
+  /* width: 800px; */
+  max-width: 80%;
   padding: 1rem 0;
   display: grid;
-  gap: 0.5rem;
+  gap: 1rem;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: top;
   grid-template-columns: 1fr;
-  /* background: url('/blankBackground.jpg'); */
 
   @media (min-width: ${(props) => props.theme.desktopBreak}) {
-      max-width: 100%;
+    max-width: 100%;
     grid-template-columns: 1fr 1fr;
   }
-  h2{
-      font-weight: 700;
-      color: ${(props) => props.theme.color.darkAccent};
+  h2 {
+    margin-top: 0;
+    font-weight: 700;
+    color: ${(props) => props.theme.color.darkAccent};
   }
   p {
-    /* background: blue; */
     margin: 0;
-    padding: 0 .5rem;
-    /* background: ${(props) => props.theme.color.lightAccent}; */
+    padding: 0 0.5rem;
   }
 
   img {

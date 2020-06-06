@@ -10,16 +10,12 @@ const HeaderStyles = styled.header`
   width: 100%;
   display: grid;
   grid-auto-flow: row;
-  /* background: ${(props) => props.theme.color.darkShade}; */
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.60), 
-      rgba(0, 0, 0, 0.60)
-    ), url('/tablature.jpg');
-    background-size: cover;
-    background-position: center;
-    border-bottom: 5px solid ${(props) => props.theme.color.darkAccent};
-    box-shadow: ${(props) => props.theme.bs}
-    /* background-position-x: -100px; */
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('/tablature.jpg');
+  background-size: cover;
+  background-position: center;
+  border-bottom: 5px solid ${(props) => props.theme.color.darkAccent};
+  box-shadow: ${(props) => props.theme.bs};
 `
 
 const Inner = styled.div`
