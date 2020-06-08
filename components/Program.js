@@ -23,9 +23,9 @@ const ProgramStyles = styled(motion.div)`
     grid-template-columns: 1fr 1fr;
   }
   h2 {
-    margin-top: 0;
+    /* margin-top: 0; */
     /* font-weight: 700; */
-    color: ${(props) => props.theme.color.darkAccent};
+    /* color: ${(props) => props.theme.color.darkAccent}; */
   }
   p {
     margin: 0;

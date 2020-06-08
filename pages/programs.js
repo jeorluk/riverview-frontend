@@ -7,9 +7,6 @@ import Program from '../components/Program'
 
 const ProgramStyles = styled(motion.div)`
   h1 {
-    /* font-size: 4rem; */
-    /* font-weight: bold; */
-    color: ${(props) => props.theme.color.darkAccent};
     text-align: center;
   }
 

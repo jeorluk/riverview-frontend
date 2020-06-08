@@ -4,14 +4,52 @@ import { BackgroundProvider } from '../context/BackgroundContext'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import groq from 'groq'
 import client from '../client'
-import urlFor from '../util/urlFor'
 
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
-import PageBackground from '../components/PageBackground'
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 const GlobalStyle = createGlobalStyle`
+:root{
+  /*Type sizes (Major Second for mobile) */
+  --size-up-five: 1.802em;
+  --size-up-four: 1.602em;
+  --size-up-three: 1.424em;
+  --size-up-two: 1.266em;
+  --size-up-one: 1.125em;
+  --size-down-one: 0.889em;
+  --size-down-two: 0.79em;
+  --size-down-three: 0.702em;
+
+  
+  
+  @media (min-width: ${(props) => props.theme.tabletBreak}){
+  /*Type sizes (Minor Third for tablet) */
+  --size-up-five: 2.488em;
+  --size-up-four: 2.074em;
+  --size-up-three: 1.728em;
+  --size-up-two: 1.44em;
+  --size-up-one: 1.2em;
+  --size-down-one: 0.833em;
+  --size-down-two: 0.694em;
+  --size-down-three: 0.579em;
+ 
+  }
+  @media (min-width: ${(props) => props.theme.desktopBreak}){
+  /*Type sizes (Major Third for desktop) */
+  --size-up-five: 3.052em;
+  --size-up-four: 2.441em;
+  --size-up-three: 1.953em;
+  --size-up-two: 1.563em;
+  --size-up-one: 1.25em;
+  --size-down-one: 0.8em;
+  --size-down-two: 0.64em;
+  --size-down-three: 0.512em;
+ 
+  }
+}
+
 html {
+  font-size: 100%;
   box-sizing: border-box;
 }
 *, *:before, *:after {
@@ -23,143 +61,43 @@ body {
   background-size: cover;
   padding: 0;
   margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
 }
 
 a {
     text-decoration: none;
 }
 
-h1{
+p {margin-bottom: 1.15rem;}
+
+h1, h2, h3, h4, h5 {
+  margin: 2.75rem 0 1.05rem;
+  font-family: 'Marko One', serif;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: var(--size-up-five);
   color: ${(props) => props.theme.color.darkAccent};
-    text-align: center;
-}
-/*Typography Perfect Fourth*/
-/* html {
-    font-size: 100%;
-  }
-
-  body {
-    background-color: white;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    line-height: 1.65;
-    color: #333;
-  }
-
-  p {
-    margin-bottom: 1.15rem;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    margin: 2.75rem 0 1.05rem;
-    font-family: 'Marko One', serif;
-    font-weight: 400;
-    line-height: 1.15;
-  }
-
-  h1 {
-    margin-top: 0;
-    font-size: 4.209em;
-  }
-
-  h2 {
-    font-size: 3.157em;
-  }
-
-  h3 {
-    font-size: 2.369em;
-  }
-
-  h4,
-  .text_menu {
-    font-size: 1.777em;
-  }
-
-  h5 {
-    font-size: 1.333em;
-  }
-
-  small,
-  .text_small {
-    font-size: 0.75em;
-  }
- */
-/*Typography Major Second*/
-html {font-size: 100%;} /*16px*/
-
-body {
-  background-color: white;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  line-height: 1.65;
-  color: #333;
+  text-align: center;
 }
 
-p {margin-bottom: 1.15rem;}
-
-h1, h2, h3, h4, h5 {
-  margin: 2.75rem 0 1.05rem;
-  font-family: 'Marko One', serif;
-  font-weight: 400;
-  line-height: 1.15;
-}
-
-h1 {
+h2 {
+  color: ${(props) => props.theme.color.darkAccent};
   margin-top: 0;
-  font-size: 1.802em;
-}
+  font-size: var(--size-up-four);}
 
-h2 {font-size: 1.602em;}
+h3, .text_menu {font-size: var(--size-up-three);}
 
-h3, .text_menu {font-size: 1.424em;}
+h4 {font-size: var(--size-up-two);}
 
-h4  {font-size: 1.266em;}
+h5,.text_large {font-size: var(--size-up-one);}
 
-h5,.text_large {font-size: 1.125em;}
-
-small, .text_small {font-size: 0.889em;}
-
-  /*Typography Major Third*/
-  @media (min-width: ${(props) => props.theme.desktopBreak}){
-
-  html {font-size: 100%;} /*16px*/
-
-body {
-  background-color: white;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  line-height: 1.65;
-  color: #333;
-}
-
-p {margin-bottom: 1.15rem;}
-
-h1, h2, h3, h4, h5 {
-  margin: 2.75rem 0 1.05rem;
-  font-family: 'Marko One', serif;
-  font-weight: 400;
-  line-height: 1.15;
-}
-
-h1 {
-  margin-top: 0;
-  font-size: 3.052em;
-}
-
-h2 {font-size: 2.441em;}
-
-h3, .text_menu {font-size: 1.953em;}
-
-h4 {font-size: 1.563em;}
-
-h5,.text_large {font-size: 1.25em;}
-
-small, .text_small {font-size: 0.8em;}
-  }
+small, .text_small {font-size: var(--size-down-one);}
 `
 
 function MyApp({ Component, pageProps, settings }) {
