@@ -10,26 +10,13 @@ import { motion } from 'framer-motion'
 
 const ArtistsStyles = styled.div`
   text-align: center;
-  margin: 1rem;
 `
 
 const ArtistsList = styled(motion.div)`
   margin: auto;
-  /* padding: 1rem; */
   display: flex;
   flex-wrap: wrap;
-  
-  /* gap: 1rem; */
-  /* grid-template-columns: 1fr 1fr; */
   justify-content: center;
-/* 
-  @media (min-width: ${(props) => props.theme.tabletBreak}) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  @media (min-width: ${(props) => props.theme.desktopBreak}) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  } */
 `
 
 const container = {
@@ -42,12 +29,12 @@ const item = {
   show: { y: 0, opacity: 1 },
 }
 
-const artists = (props) => {
-  const { artistList = [] } = props
+const artists = ({ pageSettings }) => {
+  const { title, intro, artistList = [] } = pageSettings
   const [hoveredArtist, setHoveredArtist] = useState(0)
 
   return (
-    <Layout title='Our Artists'>
+    <Layout>
       <ArtistsStyles>
         <Head>
           <title>Riverview | Artists</title>
@@ -56,7 +43,8 @@ const artists = (props) => {
             content='The artists of Riverview Early Music'
           />
         </Head>
-
+        <h1>{title}</h1>
+        <p>{intro}</p>
         <ArtistsList variants={container} initial='hidden' animate='show'>
           {artistList.map((artist) => (
             <motion.div variants={item} key={artist._id}>
@@ -74,19 +62,23 @@ const artists = (props) => {
 }
 
 export async function getStaticProps() {
-  const query = groq`*[_type == "artist"]{
-    _id,
+  const query = groq`*[_type == "artistsPage"][0]{
+    ...,
+    artistList[]-> {
+      _id,
     slug,
    name,
    intro,
    featured,
    image,
    "imageMeta": image.asset->,
+    }
   }`
-  const artistList = await client.fetch(query)
+
+  const pageSettings = await client.fetch(query)
 
   return {
-    props: { artistList },
+    props: { pageSettings },
   }
 }
 

@@ -29,6 +29,10 @@ a {
     text-decoration: none;
 }
 
+h1{
+  color: ${(props) => props.theme.color.darkAccent};
+    text-align: center;
+}
 /*Typography Perfect Fourth*/
 /* html {
     font-size: 100%;
@@ -113,9 +117,9 @@ h2 {font-size: 1.602em;}
 
 h3, .text_menu {font-size: 1.424em;}
 
-h4 {font-size: 1.266em;}
+h4  {font-size: 1.266em;}
 
-h5 {font-size: 1.125em;}
+h5,.text_large {font-size: 1.125em;}
 
 small, .text_small {font-size: 0.889em;}
 
@@ -152,7 +156,7 @@ h3, .text_menu {font-size: 1.953em;}
 
 h4 {font-size: 1.563em;}
 
-h5 {font-size: 1.25em;}
+h5,.text_large {font-size: 1.25em;}
 
 small, .text_small {font-size: 0.8em;}
   }

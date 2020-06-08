@@ -41,7 +41,7 @@ const ArtistName = styled.div(
   `
 )
 
-const Mask = styled(motion.div)`
+const Mask = styled(motion.p)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,7 +106,7 @@ const SingleArtist = ({ artist, hoveredArtist, setHoveredArtist }) => {
           />
         }
       </div>
-      <ArtistName>{artist.name}</ArtistName>
+      <ArtistName className='text_large'>{artist.name}</ArtistName>
     </SingleArtistStyles>
   )
 }
