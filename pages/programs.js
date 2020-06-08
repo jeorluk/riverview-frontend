@@ -7,8 +7,8 @@ import Program from '../components/Program'
 
 const ProgramStyles = styled(motion.div)`
   h1 {
-    font-size: 4rem;
-    font-weight: bold;
+    /* font-size: 4rem; */
+    /* font-weight: bold; */
     color: ${(props) => props.theme.color.darkAccent};
     text-align: center;
   }
@@ -25,7 +25,7 @@ const Programs = ({ pageSettings }) => {
       <ProgramStyles>
         <h1>{title}</h1>
         <p id='intro'>{intro}</p>
-        {pageSettings.programList.map((program, i) => (
+        {programList.map((program, i) => (
           <Program program={program} i={i} key={program._id} />
         ))}
       </ProgramStyles>

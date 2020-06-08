@@ -10,7 +10,7 @@ import urlFor from '../../util/urlFor'
 
 const ArtistStyles = styled.div`
   a {
-    font-size: 2rem;
+    /* font-size: 2rem; */
     padding: 1rem;
   }
 `

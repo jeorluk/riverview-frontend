@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const Button = styled.button`
   margin: 2px;
   /* padding: 0; */
-  font-size: 1em;
-  font-weight: bold;
+  /* font-size: 1em; */
+  /* font-weight: bold; */
   border: 0;
   background: transparent;
   color: ${({ invert, theme }) =>

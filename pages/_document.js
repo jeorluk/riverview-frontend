@@ -9,7 +9,8 @@ export default class CustomDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
         })
 
       const initialProps = await Document.getInitialProps(ctx)
@@ -31,7 +32,12 @@ export default class CustomDocument extends Document {
   render() {
     return (
       <Html lang='en'>
-        <Head />
+        <Head>
+          <link
+            href='https://fonts.googleapis.com/css2?family=Marko+One&family=Poppins&display=swap'
+            rel='stylesheet'
+          ></link>
+        </Head>
         <body>
           <Main />
           <NextScript />

@@ -25,7 +25,7 @@ const ArtistStyles = styled.div`
     font-weight: 300;
     flex-grow: 1;
     padding: 0 3rem;
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
   }
 `
 class Artist extends Component {

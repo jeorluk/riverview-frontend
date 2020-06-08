@@ -31,10 +31,10 @@ background-position: left bottom;
 const PageTitle = styled.h1(
   ({ theme }) => css`
     /* font-variant: small-caps; */
-    font-size: 6rem;
+    /* font-size: 6rem; */
     color: ${theme.color.darkAccent};
     text-align: center;
-    margin: 25px;
+    /* margin: 25px; */
   `
 )
 

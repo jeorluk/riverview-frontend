@@ -1,5 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
+import BlockContent from '@sanity/block-content-to-react'
+
 import styled, { css } from 'styled-components'
 import urlFor from '../util/urlFor'
 import { motion } from 'framer-motion'
@@ -35,7 +37,7 @@ const ArtistName = styled.div(
     z-index: 2;
     background-color: ${theme.color.darkShade};
     color: ${theme.color.lightShade};
-    font-size: 2rem;
+    /* font-size: 2rem; */
   `
 )
 
@@ -80,7 +82,9 @@ const SingleArtist = ({ artist, hoveredArtist, setHoveredArtist }) => {
     >
       <Link href='/artist/[slug]' as={`/artist/${artist.slug.current}`}>
         <a>
-          <Mask variants={maskVariants}>{artist.intro}</Mask>
+          <Mask variants={maskVariants}>
+            {artist.intro && <BlockContent blocks={artist.intro} />}
+          </Mask>
         </a>
       </Link>
       <div

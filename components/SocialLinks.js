@@ -11,7 +11,7 @@ const Styles = styled.p`
   margin: 0;
   a {
     padding: 2px 0.5em;
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
   }
 `
 

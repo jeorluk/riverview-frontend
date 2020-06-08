@@ -8,7 +8,8 @@ import { motion } from 'framer-motion'
 const NavStyles = styled.nav(
   ({ theme }) => css`
     margin: 0 auto;
-    max-width: ${theme.maxContentWidth};
+    width: 100%;
+    max-width: ${theme.maxWidth};
     display: grid;
     grid-template-columns: auto auto;
     justify-content: space-between;
@@ -28,8 +29,8 @@ const DesktopNav = styled.ul(
     display: grid;
     grid-auto-flow: column;
     align-content: flex-end;
-    font-size: 1.5em;
-    font-weight: 1000;
+    /* font-size: 1.5em; */
+    /* font-weight: 1000; */
 
     list-style: none;
 
@@ -52,22 +53,24 @@ const DesktopNav = styled.ul(
     }
   `
 )
-const NavDrawer = styled(motion.ul)``
-// ({ theme }) => css`
-// position: absolutel
-//   grid-column: span 2;
-//   margin: 0;
-//   padding-left: 0.5em;
-//   list-style: none;
-//   font-size: 2em;
-//   background: ${theme.color.darkShade};
-//   color: ${theme.color.lightShade};
+const NavDrawer = styled(motion.ul)(
+  ({ theme }) => css`
+    position: absolute;
+    top: 180px;
+    width: 100vw;
+    grid-column: span 2;
+    margin: 0;
+    padding-left: 0.5em;
+    list-style: none;
+    /* font-size: 2em; */
+    background: ${theme.color.darkShade};
+    color: ${theme.color.lightShade};
 
-//   a {
-//     color: ${theme.color.lightShade};
-//   }
-// `
-// )
+    a {
+      color: ${theme.color.lightShade};
+    }
+  `
+)
 const MenuToggle = styled.div`
   padding: 0.5rem;
   height: 5rem;
@@ -121,7 +124,7 @@ const menuItems = [
 const Nav = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   return (
-    <NavStyles>
+    <NavStyles className='text_menu'>
       <Link href='/'>
         <a>
           <RiverviewLogo />

@@ -24,7 +24,7 @@ const ProgramStyles = styled(motion.div)`
   }
   h2 {
     margin-top: 0;
-    font-weight: 700;
+    /* font-weight: 700; */
     color: ${(props) => props.theme.color.darkAccent};
   }
   p {

@@ -24,7 +24,7 @@ const EventStyles = styled.div`
   }
   .details {
     /* margin: 3rem; */
-    font-size: 2rem;
+    /* font-size: 2rem; */
   }
 `
 
