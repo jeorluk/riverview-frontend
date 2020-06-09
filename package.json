@@ -4,9 +4,9 @@
   "description": "Front end for Riverview site",
   "main": "index.js",
   "scripts": {
-    "dev": "vercel",
-    "build": "vercel build",
-    "start": "vercel start",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jim Orluk",
