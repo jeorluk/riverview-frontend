@@ -21,7 +21,10 @@ const Inner = styled.div`
   width: 100%;
   max-width: ${(props) => props.theme.maxWidth};
   margin: 0 auto;
-  padding-top: 1rem;
+  padding-top: 2rem;
+  @media (max-width: ${(props) => props.theme.desktopBreak}) {
+    padding: 2rem;
+  }
 `
 
 const Layout = ({ children }) => {

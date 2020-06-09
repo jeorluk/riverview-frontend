@@ -24,10 +24,12 @@ const Events = styled.div`
   justify-items: center;
 `
 
-const events = (props) => {
-  const { eventList = [] } = props
+const events = ({ pageSettings, eventList }) => {
+  const { title, intro } = pageSettings
   return (
     <Layout>
+      <h1>{title}</h1>
+      <p>{intro}</p>
       <Events>
         {eventList.map((event) => (
           <React.Fragment key={event._id}>
@@ -43,26 +45,17 @@ const events = (props) => {
   )
 }
 
-// events.getInitialProps = async (ctx) => {
-//   return {
-//     eventList: await client.fetch(groq`*[_type == "event"]`),
-//   }
-// }
-
 export async function getStaticProps() {
-  const query = groq`*[_type == "event"]{
+  const pageQuery = groq`*[_type == "eventsPage"][0]`
+  const eventQuery = groq`*[_type == "event"]{
     ...
-  //   _id,
-  //   slug,
-  //  name,
-  //  featured,
-  //  image,
-  //  "imageMeta": image.asset->,
   }`
-  const eventList = await client.fetch(query)
+
+  const pageSettings = await client.fetch(pageQuery)
+  const eventList = await client.fetch(eventQuery)
 
   return {
-    props: { eventList },
+    props: { pageSettings, eventList },
   }
 }
 

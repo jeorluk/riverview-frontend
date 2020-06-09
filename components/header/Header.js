@@ -10,7 +10,7 @@ const HeaderStyles = styled.header`
   width: 100%;
   display: grid;
   grid-auto-flow: row;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('/tablature.jpg');
   background-size: cover;
   background-position: center;

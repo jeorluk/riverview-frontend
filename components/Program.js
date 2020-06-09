@@ -7,7 +7,7 @@ import { useRef } from 'react'
 
 const ProgramStyles = styled(motion.div)`
   border-bottom: 1px solid ${(props) => props.theme.color.darkShade};
-
+min-height: 400px;
   /* width: 800px; */
   max-width: 80%;
   padding: 1rem 0;
@@ -33,6 +33,7 @@ const ProgramStyles = styled(motion.div)`
   }
 
   img {
+    box-shadow: ${(props) => props.theme.bs};
     margin: 0 auto;
     width: 100%;
     max-width: 800px;

@@ -11,6 +11,7 @@ config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatica
 const GlobalStyle = createGlobalStyle`
 :root{
   /*Type sizes (Major Second for mobile) */
+  --line-height: 1.2;
   --size-up-five: 1.802em;
   --size-up-four: 1.602em;
   --size-up-three: 1.424em;
@@ -24,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
   
   @media (min-width: ${(props) => props.theme.tabletBreak}){
   /*Type sizes (Minor Third for tablet) */
+  --line-height: 1.4;
   --size-up-five: 2.488em;
   --size-up-four: 2.074em;
   --size-up-three: 1.728em;
@@ -36,6 +38,7 @@ const GlobalStyle = createGlobalStyle`
   }
   @media (min-width: ${(props) => props.theme.desktopBreak}){
   /*Type sizes (Major Third for desktop) */
+  --line-height: 1.65;
   --size-up-five: 3.052em;
   --size-up-four: 2.441em;
   --size-up-three: 1.953em;
@@ -63,7 +66,7 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  line-height: 1.65;
+  line-height: var(--line-height);
 }
 
 a {
@@ -91,9 +94,9 @@ h2 {
   margin-top: 0;
   font-size: var(--size-up-four);}
 
-h3, .text_menu {font-size: var(--size-up-three);}
+h3, .mobile_menu {font-size: var(--size-up-three);}
 
-h4 {font-size: var(--size-up-two);}
+h4, .desktop_menu {font-size: var(--size-up-two);}
 
 h5,.text_large {font-size: var(--size-up-one);}
 

@@ -55,6 +55,7 @@ const DesktopNav = styled.ul(
 )
 const NavDrawer = styled(motion.ul)(
   ({ theme }) => css`
+    box-shadow: ${(props) => props.theme.bs};
     position: absolute;
     top: 180px;
     width: 100vw;
@@ -124,13 +125,13 @@ const menuItems = [
 const Nav = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   return (
-    <NavStyles className='text_menu'>
+    <NavStyles>
       <Link href='/'>
         <a>
           <RiverviewLogo />
         </a>
       </Link>
-      <DesktopNav>
+      <DesktopNav className='desktop_menu'>
         {menuItems.map((item) => {
           return (
             <li key={`desktop${item.text}`}>
@@ -147,6 +148,7 @@ const Nav = () => {
 
       {isNavOpen && (
         <NavDrawer
+          className='mobile_menu'
           variants={list}
           initial='closed'
           animate={isNavOpen ? 'open' : 'closed'}

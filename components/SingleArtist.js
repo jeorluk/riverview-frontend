@@ -7,6 +7,7 @@ import urlFor from '../util/urlFor'
 import { motion } from 'framer-motion'
 
 const SingleArtistStyles = styled(motion.div)`
+  box-shadow: ${(props) => props.theme.bs};
   overflow: hidden;
   position: relative;
   /* width: 100%; */
@@ -41,7 +42,8 @@ const ArtistName = styled.div(
   `
 )
 
-const Mask = styled(motion.p)`
+const Mask = styled(motion.div)`
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
