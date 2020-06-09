@@ -46,11 +46,11 @@ img{display:block;margin:auto;}
     /* left: 0; */
     /* width: 100%; */
     transition: opacity 1s ease-in;
+    border-radius: 50%; 
 
   @media (min-width: ${(props) => props.theme.tabletBreak}) {
     margin-right: 60px;
     float: left;
-    border-radius: 50%; 
 shape-outside: circle();
   } 
   }
