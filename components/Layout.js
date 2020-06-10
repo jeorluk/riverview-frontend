@@ -9,12 +9,19 @@ const LayoutStyles = styled.div`
   overflow: scroll;
 
   display: grid;
-  grid-template-rows:
-    calc(
+  /* grid-template-rows: */
+    /* calc(
       ${(props) => props.theme.mediaBarHeight} +
         ${(props) => props.theme.navBarHeight}
     )
-    1fr auto;
+    1fr auto; */
+  grid-template-rows: ${(props) => props.theme.mobileHeaderHeight} 1fr auto;
+
+@media(min-width: ${(props) => props.theme.desktopBreak}){
+
+  grid-template-rows: ${(props) => props.theme.headerHeight} 1fr auto;
+}
+
 `
 
 const Inner = styled.div`

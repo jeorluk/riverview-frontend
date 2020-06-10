@@ -15,9 +15,13 @@ const NavStyles = styled.nav(
     justify-content: space-between;
 
     svg {
-      padding: 1rem 0;
+      padding: 1rem 1rem;
       fill: ${theme.color.lightShade};
-      height: ${theme.navBarHeight};
+      height: ${theme.mobileNavBarHeight};
+      @media (min-width: ${theme.desktopBreak}) {
+        padding: 1rem 0;
+        height: ${theme.navBarHeight};
+      }
     }
   `
 )

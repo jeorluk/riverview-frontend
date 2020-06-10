@@ -1,6 +1,5 @@
 import App from 'next/app'
 import { ThemeProvider, createGlobalStyle, css } from 'styled-components'
-import { BackgroundProvider } from '../context/BackgroundContext'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import groq from 'groq'
 import client from '../client'
@@ -104,12 +103,32 @@ small, .text_small {font-size: var(--size-down-one);}
 `
 
 function MyApp({ Component, pageProps, settings }) {
+  const mediaBarHeight = 30
+  const navBarHeight = 150
+  const mobileNavBarHeight = 100
+  const headerHeight = mediaBarHeight + navBarHeight + 'px'
+  const mobileHeaderHeight = mediaBarHeight + mobileNavBarHeight + 'px'
+  console.log(headerHeight)
+  const theme = {
+    ...settings.theme,
+    mediaBarHeight: mediaBarHeight + 'px',
+    navBarHeight: navBarHeight + 'px',
+    headerHeight: headerHeight,
+    mobileNavBarHeight: mobileNavBarHeight + 'px',
+    mobileHeaderHeight: mobileHeaderHeight,
+    tabletBreak: '600px',
+    desktopBreak: '1200px',
+    maxWidth: '1000px',
+    bs: '0 3px 6px rgba(0,0,0,.7)',
+  }
+
+  console.log(theme)
   return (
-    <ThemeProvider theme={settings.theme}>
-      <BackgroundProvider value={true}>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </BackgroundProvider>
+    <ThemeProvider theme={theme}>
+      {/* <BackgroundProvider value={true}> */}
+      <GlobalStyle />
+      <Component {...pageProps} />
+      {/* </BackgroundProvider> */}
     </ThemeProvider>
   )
 }
@@ -123,19 +142,16 @@ MyApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext)
 
-  // const query = groq`*[_type == "siteSettings"]{..., theme->}[0]`
   const query = groq`*[_type == "siteSettings"]
     {..., theme->
-      {..., 
+      {
       "color": {
         "lightShade": color.lightShade.hex,
         "lightAccent": color.lightAccent.hex,
         "main": color.main.hex,
         "darkAccent": color.darkAccent.hex,
         "darkShade": color.darkShade.hex,
-
-        
-        }}}[0]`
+      }}}[0]`
   const settings = await client.fetch(query)
   appProps.settings = settings
 
