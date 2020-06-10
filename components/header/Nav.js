@@ -61,7 +61,7 @@ const NavDrawer = styled(motion.ul)(
   ({ theme }) => css`
     box-shadow: ${(props) => props.theme.bs};
     position: absolute;
-    top: 180px;
+    top: ${(props) => props.theme.mobileHeaderHeight};
     width: 100vw;
     grid-column: span 2;
     margin: 0;
