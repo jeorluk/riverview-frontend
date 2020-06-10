@@ -7,9 +7,9 @@ import { useRef } from 'react'
 
 const ProgramStyles = styled(motion.div)`
   border-bottom: 1px solid ${(props) => props.theme.color.darkShade};
-min-height: 400px;
+  min-height: 400px;
   /* width: 800px; */
-  max-width: 80%;
+  /* max-width: 80%; */
   padding: 1rem 0;
   display: grid;
   gap: 1rem;
@@ -22,11 +22,7 @@ min-height: 400px;
     max-width: 100%;
     grid-template-columns: 1fr 1fr;
   }
-  h2 {
-    /* margin-top: 0; */
-    /* font-weight: 700; */
-    /* color: ${(props) => props.theme.color.darkAccent}; */
-  }
+
   p {
     margin: 0;
     padding: 0 0.5rem;
@@ -40,7 +36,7 @@ min-height: 400px;
   }
 `
 const variants = {
-  hidden: { x: '-100%', opacity: 0 },
+  hidden: { x: '-99%', opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,

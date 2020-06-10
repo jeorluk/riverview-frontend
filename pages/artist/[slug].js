@@ -36,7 +36,7 @@ const ArtistCard = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
   }
-img{display:block;margin:auto;}
+img{display:block;margin:auto;max-width: 100%;}
   #artistImage {
     display: block;
     max-width: 80%;
