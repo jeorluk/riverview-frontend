@@ -75,6 +75,7 @@ a {
 p {margin-bottom: 1.15rem;}
 
 h1, h2, h3, h4, h5 {
+  color: ${(props) => props.theme.color.darkAccent};
   margin: 2.75rem 0 1.05rem;
   font-family: 'Marko One', serif;
   font-weight: 400;
@@ -84,12 +85,10 @@ h1, h2, h3, h4, h5 {
 h1 {
   margin-top: 0;
   font-size: var(--size-up-five);
-  color: ${(props) => props.theme.color.darkAccent};
   text-align: center;
 }
 
 h2 {
-  color: ${(props) => props.theme.color.darkAccent};
   margin-top: 0;
   font-size: var(--size-up-four);}
 

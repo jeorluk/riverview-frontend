@@ -1,9 +1,8 @@
 import groq from 'groq'
-import client from '../client'
 import styled from 'styled-components'
-import RiverviewLogo from '../public/RiverviewLogo.svg'
-import Link from 'next/link'
+import client from '../client'
 import Layout from '../components/Layout'
+
 import urlFor from '../util/urlFor'
 
 const PageStyles = styled.div`
@@ -18,9 +17,9 @@ const PageStyles = styled.div`
 
 const Index = ({ pageSettings }) => {
   console.log(pageSettings)
-  const { bannerImage, mission } = pageSettings
+  const { bannerImage, mission, sidebarStart, sidebarEnd } = pageSettings
   return (
-    <Layout>
+    <Layout sidebarEnd={sidebarEnd}>
       <PageStyles>
         {bannerImage && (
           <img id='banner' lazy src={urlFor(bannerImage).width(1000).url()} />
