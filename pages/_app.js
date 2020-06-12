@@ -108,7 +108,6 @@ function MyApp({ Component, pageProps, settings }) {
   const mobileNavBarHeight = 100
   const headerHeight = mediaBarHeight + navBarHeight + 'px'
   const mobileHeaderHeight = mediaBarHeight + mobileNavBarHeight + 'px'
-  console.log(headerHeight)
   const theme = {
     ...settings.theme,
     mediaBarHeight: mediaBarHeight + 'px',
@@ -122,7 +121,6 @@ function MyApp({ Component, pageProps, settings }) {
     bs: '0 3px 6px rgba(0,0,0,.7)',
   }
 
-  console.log(theme)
   return (
     <ThemeProvider theme={theme}>
       {/* <BackgroundProvider value={true}> */}
