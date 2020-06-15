@@ -8,21 +8,52 @@ import urlFor from '../util/urlFor'
 const PageStyles = styled.div`
   display: grid;
   justify-items: center;
-  #banner {
+
+  #bannerContainer {
+    /* border: 2px solid red; */
+    display: grid;
+    justify-items: center;
+    position: relative;
     margin-bottom: 2rem;
-    max-width: 100%;
-    max-height: 50vh;
+    width: 100%;
+    height: 0;
+    /* background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center; */
+  }
+
+  #bannerImage {
+    height: 100%;
+    position: absolute;
+    top: 0;
   }
 `
 
 const Index = ({ pageSettings }) => {
-  console.log(pageSettings)
   const { bannerImage, mission, sidebarStart, sidebarEnd } = pageSettings
+  console.log(bannerImage)
   return (
     <Layout sidebarEnd={sidebarEnd}>
       <PageStyles>
         {bannerImage && (
-          <img id='banner' lazy src={urlFor(bannerImage).width(1000).url()} />
+          <div
+            id='bannerContainer'
+            style={{
+              // backgroundImage: `url(${bannerImage.metadata.lqip})`,
+              paddingTop: `clamp(1vh, calc(100% / ${bannerImage.metadata.dimensions.aspectRatio}), 50vh`,
+            }}
+          >
+            <img
+              id='bannerImage'
+              loading='lazy'
+              src={urlFor(bannerImage)
+                .width(500)
+                .format('jpg')
+                .auto('format')
+                .url()}
+              alt='Banner image for Riverview Early Music'
+            />
+          </div>
         )}
         <h1>Our Mission</h1>
         <div>{mission}</div>
@@ -34,6 +65,7 @@ const Index = ({ pageSettings }) => {
 export async function getStaticProps() {
   const query = groq`*[_type == "homePage"][0]{
     ...,
+    "bannerImage": bannerImage.asset->
     
   }`
   const pageSettings = await client.fetch(query)
