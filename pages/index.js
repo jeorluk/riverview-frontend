@@ -4,6 +4,7 @@ import client from '../client'
 import Layout from '../components/Layout'
 
 import urlFor from '../util/urlFor'
+import Head from 'next/head'
 
 const PageStyles = styled.div`
   display: grid;
@@ -33,6 +34,13 @@ const Index = ({ pageSettings }) => {
   console.log(bannerImage)
   return (
     <Layout sidebarEnd={sidebarEnd}>
+      <Head>
+        <title>Riverview Early Music</title>
+        <meta
+          name='description'
+          content='Riverview Early Music presents live performances of Medieval, Renaissance, and early Baroque music, with a special emphasis on the repertoires for voice and plucked string instruments.'
+        />
+      </Head>
       <PageStyles>
         {bannerImage && (
           <div

@@ -18,12 +18,17 @@ const Styles = styled.p`
 const SocialLinks = () => {
   return (
     <Styles>
-      <a href='https://www.facebook.com/RiverveiwEarlyMusic' target='blank'>
+      <a
+        href='https://www.facebook.com/RiverveiwEarlyMusic'
+        target='blank'
+        aria-label='Facebook'
+      >
         <FontAwesomeIcon icon={faFacebookSquare} />
       </a>
       <a
         href='https://www.youtube.com/channel/UCsD69-69f2TXwy6rtXcnQcA'
         target='blank'
+        aria-label='YouTube'
       >
         <FontAwesomeIcon icon={faYoutubeSquare} />
       </a>

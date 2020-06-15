@@ -131,7 +131,7 @@ const Nav = () => {
   return (
     <NavStyles>
       <Link href='/'>
-        <a>
+        <a aria-label='Link to Riverview home page'>
           <RiverviewLogo />
         </a>
       </Link>

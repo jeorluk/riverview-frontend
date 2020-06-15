@@ -35,14 +35,14 @@ const artists = ({ pageSettings }) => {
 
   return (
     <Layout>
+      <Head>
+        <title>Riverview | Artists</title>
+        <meta
+          name='description'
+          content='The artists of Riverview Early Music'
+        />
+      </Head>
       <ArtistsStyles>
-        <Head>
-          <title>Riverview | Artists</title>
-          <meta
-            name='description'
-            content='The artists of Riverview Early Music'
-          />
-        </Head>
         <h1>{title}</h1>
         <p>{intro}</p>
         <ArtistsList variants={container} initial='hidden' animate='show'>

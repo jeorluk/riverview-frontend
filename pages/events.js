@@ -5,6 +5,7 @@ import client from '../client'
 import Link from 'next/link'
 import SingleEvent from '../components/SingleEvent'
 import Layout from '../components/Layout'
+import Head from 'next/head'
 
 // const query = groq`*[_type == "event"]{
 //     _id,
@@ -28,6 +29,13 @@ const events = ({ pageSettings, eventList }) => {
   const { title, intro } = pageSettings
   return (
     <Layout>
+      <Head>
+        <title>Riverview Early Music | Events</title>
+        <meta
+          name='description'
+          content='Check back often to see our upcoming and past events, and remember to join our mailing list to get the latest information in your inbox.'
+        />
+      </Head>
       <h1>{title}</h1>
       <p>{intro}</p>
       <Events>

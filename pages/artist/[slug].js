@@ -60,12 +60,15 @@ const artistPage = ({ artist }) => {
   const { name, bio = '', image, featured, instruments, _id } = artist
   console.log(artist)
   return (
-    <Layout title={name}>
+    <Layout>
+      <Head>
+        <meta
+          name='description'
+          content={`${name} is an artist with Riverview Early Music`}
+        />
+        <title>Riverview | {name}</title>
+      </Head>
       <ArtistStyles>
-        <Head>
-          <meta name='description' content={`Artist information for ${name}`} />
-          <title>Riverview | {name}</title>
-        </Head>
         <Link href='/artists'>
           <h1>{name}</h1>
         </Link>

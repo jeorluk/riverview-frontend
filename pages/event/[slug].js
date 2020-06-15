@@ -40,23 +40,29 @@ const eventPage = ({ event }) => {
     program,
     _id,
   } = event
+
+  const formattedDate = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    timeZone: 'America/New_York',
+  }).format(new Date(event.date))
+
   return (
     <Layout title={name}>
+      <Head>
+        <meta
+          name='description'
+          content={`Riverview Early Music will present ${name} on ${formattedDate}`}
+        />
+        <title>Riverview Early Music | {name}</title>
+      </Head>
       <EventStyles>
-        <Head>
-          <meta name='description' content={`Event information for ${name}`} />
-          <title>Riverview Early Music | {name}</title>
-        </Head>
         <img src={urlFor(image).width(800).url()} alt={name} />
-        {new Intl.DateTimeFormat('en-US', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-          timeZone: 'America/New_York',
-        }).format(new Date(event.date))}
+        {formattedDate}
         <div className='details'>
           <BlockContent blocks={description} />
         </div>
