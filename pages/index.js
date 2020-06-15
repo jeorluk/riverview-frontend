@@ -17,9 +17,9 @@ const PageStyles = styled.div`
     margin-bottom: 2rem;
     width: 100%;
     height: 0;
-    background-repeat: no-repeat;
-    background-size: 75% 75%;
-    background-position: center;
+    /* background-repeat: no-repeat; */
+    /* background-size: contain; */
+    /* background-position: center; */
   }
 
   #bannerImage {
@@ -46,9 +46,8 @@ const Index = ({ pageSettings }) => {
           <div
             id='bannerContainer'
             style={{
-              backgroundImage: `url(${bannerImage.metadata.lqip})`,
+              // backgroundImage: `url(${bannerImage.metadata.lqip})`,
               paddingTop: `clamp(1vh, calc(100% / ${bannerImage.metadata.dimensions.aspectRatio}), 50vh`,
-              // paddingTop: `calc(100% / ${bannerImage.metadata.dimensions.aspectRatio})`,
             }}
           >
             <img
