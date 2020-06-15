@@ -1,4 +1,5 @@
 import Layout from '../components/Layout'
+import Head from 'next/head'
 
 const Media = ({ mediaInfo }) => {
   return (
