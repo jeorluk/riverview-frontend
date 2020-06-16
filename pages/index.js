@@ -54,7 +54,7 @@ const Index = ({ pageSettings }) => {
               id='bannerImage'
               loading='lazy'
               src={urlFor(bannerImage)
-                .width(500)
+                .width(1000)
                 .format('jpg')
                 .auto('format')
                 .url()}
