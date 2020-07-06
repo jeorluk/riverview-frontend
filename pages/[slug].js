@@ -5,7 +5,6 @@ import { mainPageQuery } from '../queries'
 import Page from '../components/Page'
 
 const generatedPage = ({ resolvedPage }) => {
-  console.log(resolvedPage)
   const { content, sidebar1, sidebar2, ...pageSettings } = resolvedPage
   return <Page resolvedPage={resolvedPage} />
 }

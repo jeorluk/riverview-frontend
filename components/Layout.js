@@ -66,7 +66,6 @@ const Inner = styled.div`
 `
 
 const Layout = ({ children, inner, sidebarStart, sidebarEnd, columns }) => {
-  console.log(columns)
   const { leftWidth = '1fr', mainWidth = '4fr', rightWidth = '1fr' } = columns
     ? columns
     : { leftWidth: '1fr', mainWidth: '4fr', rightWidth: '1fr' }
