@@ -1,53 +1,129 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import Router from 'next/router'
-import styled from 'styled-components'
+import React, { useContext } from 'react'
+import Link from 'next/link'
+import BlockContent from '@sanity/block-content-to-react'
 
-const ArtistStyles = styled.div`
-  margin: 5px;
-  background-color: white;
-  border: 2px solid red;
+import styled, { css } from 'styled-components'
+import urlFor from '../util/urlFor'
+import { motion } from 'framer-motion'
+import { HoveredItemContext } from '../context'
+
+const SingleArtistStyles = styled(motion.div)`
   box-shadow: ${(props) => props.theme.bs};
+  overflow: hidden;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  img {
+  max-width: 100%;
+  width: 300px;
+
+  .holder {
+    display: flex;
     width: 100%;
-    /* height: 400px; */
-    object-fit: cover;
+    background-size: cover;
+    background-repeat: none;
   }
-  h2 {
-    padding: 0 1.5rem;
+
+  &&& img {
+    width: 100%;
   }
-  p {
-    font-size: 12px;
-    line-height: 2;
-    font-weight: 300;
-    flex-grow: 1;
-    padding: 0 3rem;
-    /* font-size: 1.5rem; */
+
+  &&& p {
+    margin: 0;
   }
 `
-class Artist extends Component {
-  static propTypes = {
-    artist: PropTypes.object.isRequired,
-  }
-  render() {
-    const { artist } = this.props
-    return (
-      <ArtistStyles
-        onClick={() => {
-          Router.push({
-            pathname: '/artist',
-            query: { id: artist.id },
-          })
-        }}
+
+const ArtistName = styled.div(
+  ({ theme }) => css`
+    text-align: center;
+    pointer-events: none;
+    position: relative;
+    z-index: 2;
+    background-color: ${theme.color.darkShade};
+    color: ${theme.color.lightShade};
+    /* font-size: 2rem; */
+  `
+)
+
+const Mask = styled(motion.div)`
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: ${(props) => props.theme.color.main};
+  color: ${(props) => props.theme.color.lightShade};
+`
+const maskVariants = {
+  visible: {
+    opacity: 0.9,
+    y: 0,
+    transition: { ease: 'easeOut', duration: 0.3 },
+  },
+
+  hidden: {
+    opacity: 0,
+    y: '100%',
+    transition: { ease: 'easeOut', duration: 0.3 },
+  },
+}
+
+const ArtistCard = styled.div`
+  padding: 1rem;
+  padding-top: 0;
+  max-width: 100%;
+`
+
+const Artist = (props) => {
+  const { _id, slug, intro, image, imageMeta, name } = props
+  const { hoveredItem, setHoveredItem } = useContext(HoveredItemContext)
+  const isHovered = _id === hoveredItem
+  return (
+    <ArtistCard>
+      <SingleArtistStyles
+        key={_id}
+        intitial={isHovered ? 'visible' : 'hidden'}
+        onHoverStart={() => setHoveredItem(_id)}
+        onHoverEnd={() => setHoveredItem(0)}
+        onTap={() => setHoveredItem(_id)}
+        animate={isHovered ? 'visible' : 'hidden'}
       >
-        <img src={artist.largeImage} alt='Photo' />
-        <h2>{artist.name} </h2>
-      </ArtistStyles>
-    )
-  }
+        <Link href='/artist/[slug]' as={`/artist/${slug.current}`}>
+          <a>
+            <Mask variants={maskVariants}>
+              {intro && <BlockContent blocks={intro} />}
+            </Mask>
+          </a>
+        </Link>
+        <div
+          className='holder'
+          style={
+            {
+              // backgroundImage: `url(${imageMeta.metadata.lqip})`,
+              // paddingTop: `calc(100% / ${artist.imageMeta.metadata.dimensions.aspectRatio})`,
+            }
+          }
+        >
+          {
+            <img
+              src={urlFor(image)
+                .format('jpg')
+                .auto('format')
+                .height(300)
+                .width(300)
+                .url()}
+              alt={name}
+            />
+          }
+        </div>
+        <ArtistName className='text_large'>{name}</ArtistName>
+      </SingleArtistStyles>
+    </ArtistCard>
+  )
 }
 
 export default Artist

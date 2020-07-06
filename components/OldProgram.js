@@ -48,30 +48,29 @@ const variants = {
   //     transition: { delay: custom * 0.3, ease: 'easeOut', duration: 0.4 },
   //   }),
 }
-const Program = (props) => {
-  const { image, name, description } = props
+const OldProgram = ({ program, i }) => {
   const ref = useRef()
   const isOnScreen = useOnScreen(ref)
   return (
     <AnimatePresence exitBeforeEnter>
       <ProgramStyles
-        // custom={i}
+        custom={i}
         initial='hidden'
         animate={isOnScreen ? 'visible' : 'hidden'}
         variants={variants}
         ref={ref}
       >
         <img
-          src={urlFor(image).width(800).url()}
-          alt={`Banner image for ${name}`}
+          src={urlFor(program.image).width(800).url()}
+          alt={`Banner image for ${program.name}`}
         />
         <div>
-          <h2>{name}</h2>
-          <BlockContent blocks={description} />
+          <h2>{program.name}</h2>
+          <BlockContent blocks={program.description} />
         </div>
       </ProgramStyles>
     </AnimatePresence>
   )
 }
 
-export default Program
+export default OldProgram

@@ -43,7 +43,6 @@ const Hamburger = ({ active, setActive }) => {
     <HamburgerIcon
       active={active}
       onClick={() => {
-        console.log('Clicked')
         setActive(!active)
       }}
     >

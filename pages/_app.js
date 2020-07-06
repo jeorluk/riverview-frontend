@@ -5,47 +5,48 @@ import groq from 'groq'
 import client from '../client'
 
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
+import { HoveredItemContextProvider } from '../context'
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 const GlobalStyle = createGlobalStyle`
 :root{
   /*Type sizes (Major Second for mobile) */
   --line-height: 1.2;
-  --size-up-five: 1.802em;
-  --size-up-four: 1.602em;
-  --size-up-three: 1.424em;
-  --size-up-two: 1.266em;
-  --size-up-one: 1.125em;
-  --size-down-one: 0.889em;
-  --size-down-two: 0.79em;
-  --size-down-three: 0.702em;
+  --size-up-five: 1.802rem;
+  --size-up-four: 1.602rem;
+  --size-up-three: 1.424rem;
+  --size-up-two: 1.266rem;
+  --size-up-one: 1.125rem;
+  --size-down-one: 0.889rem;
+  --size-down-two: 0.79rem;
+  --size-down-three: 0.702rem;
 
   
   
   @media (min-width: ${(props) => props.theme.tabletBreak}){
   /*Type sizes (Minor Third for tablet) */
   --line-height: 1.4;
-  --size-up-five: 2.488em;
-  --size-up-four: 2.074em;
-  --size-up-three: 1.728em;
-  --size-up-two: 1.44em;
-  --size-up-one: 1.2em;
-  --size-down-one: 0.833em;
-  --size-down-two: 0.694em;
-  --size-down-three: 0.579em;
+  --size-up-five: 2.488rem;
+  --size-up-four: 2.074rem;
+  --size-up-three: 1.728rem;
+  --size-up-two: 1.44rem;
+  --size-up-one: 1.2rem;
+  --size-down-one: 0.833rem;
+  --size-down-two: 0.694rem;
+  --size-down-three: 0.579rem;
  
   }
   @media (min-width: ${(props) => props.theme.desktopBreak}){
   /*Type sizes (Major Third for desktop) */
   --line-height: 1.65;
-  --size-up-five: 3.052em;
-  --size-up-four: 2.441em;
-  --size-up-three: 1.953em;
-  --size-up-two: 1.563em;
-  --size-up-one: 1.25em;
-  --size-down-one: 0.8em;
-  --size-down-two: 0.64em;
-  --size-down-three: 0.512em;
+  --size-up-five: 3.052rem;
+  --size-up-four: 2.441rem;
+  --size-up-three: 1.953rem;
+  --size-up-two: 1.563rem;
+  --size-up-one: 1.25rem;
+  --size-down-one: 0.8rem;
+  --size-down-two: 0.64rem;
+  --size-down-three: 0.512rem;
  
   }
 }
@@ -55,7 +56,7 @@ html {
   box-sizing: border-box;
 }
 *, *:before, *:after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 body {
@@ -82,13 +83,13 @@ h1, h2, h3, h4, h5 {
   line-height: 1.15;
 }
 
-h1 {
+h1, .text_hero {
   margin-top: 0;
   font-size: var(--size-up-five);
   text-align: center;
 }
 
-h2 {
+h2{
   margin-top: 0;
   font-size: var(--size-up-four);}
 
@@ -122,10 +123,10 @@ function MyApp({ Component, pageProps, settings }) {
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <BackgroundProvider value={true}> */}
-      <GlobalStyle />
-      <Component {...pageProps} />
-      {/* </BackgroundProvider> */}
+      <HoveredItemContextProvider>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </HoveredItemContextProvider>
     </ThemeProvider>
   )
 }

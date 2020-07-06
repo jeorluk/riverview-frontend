@@ -3,7 +3,7 @@ import groq from 'groq'
 import client from '../client'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import Program from '../components/Program'
+import Program from '../components/OldProgram'
 import Head from 'next/head'
 
 const ProgramStyles = styled(motion.div)`

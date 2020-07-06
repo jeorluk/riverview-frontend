@@ -58,7 +58,6 @@ shape-outside: circle();
 
 const artistPage = ({ artist }) => {
   const { name, bio = '', image, featured, instruments, _id } = artist
-  console.log(artist)
   return (
     <Layout>
       <Head>

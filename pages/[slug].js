@@ -1,15 +1,28 @@
-import { mainPageQuery } from '../queries'
-import Page from '../components/Page'
+import groq from 'groq'
 import client from '../client'
 
-const Home = ({ resolvedPage }) => {
+import { mainPageQuery } from '../queries'
+import Page from '../components/Page'
+
+const generatedPage = ({ resolvedPage }) => {
+  console.log(resolvedPage)
   const { content, sidebar1, sidebar2, ...pageSettings } = resolvedPage
   return <Page resolvedPage={resolvedPage} />
 }
 
-export async function getStaticProps() {
+export async function getStaticPaths() {
+  const query = groq`*[_type=="page"]{"slug": slug.current}`
+  const pageList = await client.fetch(query)
+  const paths = pageList.map((page) => ({
+    params: { slug: page.slug },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
   const query = mainPageQuery
-  const slug = 'index'
+  const { slug = '' } = params
   const page = await client.fetch(query, { slug })
   const resolvedContent = await resolveQueries(page.content)
   const resolvedSidebar1 = await resolveQueries(page.sidebar1)
@@ -38,4 +51,4 @@ const resolveQueries = async (content) => {
     })
   )
 }
-export default Home
+export default generatedPage
