@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Link from 'next/link'
 import BlockContent from '@sanity/block-content-to-react'
 
@@ -6,6 +6,7 @@ import styled, { css } from 'styled-components'
 import urlFor from '../util/urlFor'
 import { motion } from 'framer-motion'
 import { HoveredItemContext } from '../context'
+import ArtistModal from './ArtistModal'
 
 const SingleArtistStyles = styled(motion.div)`
   box-shadow: ${(props) => props.theme.bs};
@@ -80,10 +81,12 @@ const ArtistCard = styled.div`
 
 const Artist = (props) => {
   const { _id, slug, intro, image, imageMeta, name } = props
+  const [isSelected, setSelected] = useState(false)
   const { hoveredItem, setHoveredItem } = useContext(HoveredItemContext)
   const isHovered = _id === hoveredItem
   return (
     <ArtistCard>
+      {isSelected && <ArtistModal artist={props} setSelected={setSelected} />}
       <SingleArtistStyles
         key={_id}
         intitial={isHovered ? 'visible' : 'hidden'}
@@ -92,13 +95,18 @@ const Artist = (props) => {
         onTap={() => setHoveredItem(_id)}
         animate={isHovered ? 'visible' : 'hidden'}
       >
-        <Link href='/artist/[slug]' as={`/artist/${slug.current}`}>
-          <a>
-            <Mask variants={maskVariants}>
-              {intro && <BlockContent blocks={intro} />}
-            </Mask>
-          </a>
-        </Link>
+        {/* <Link href='/artist/[slug]' as={`/artist/${slug.current}`}> */}
+        {/* <a> */}
+        <Mask
+          onClick={() => {
+            setSelected(true)
+          }}
+          variants={maskVariants}
+        >
+          {intro && <BlockContent blocks={intro} />}
+        </Mask>
+        {/* </a> */}
+        {/* </Link> */}
         <div
           className='holder'
           style={
