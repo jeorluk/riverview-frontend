@@ -1,6 +1,5 @@
 import groq from 'groq'
 import client from '../client'
-
 import { mainPageQuery } from '../queries'
 import Page from '../components/Page'
 

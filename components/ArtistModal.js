@@ -9,12 +9,16 @@ const ArtistModalStyles = styled.div`
   align-content: center;
   justify-content: center;
   position: absolute;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   z-index: 1000;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.7);
+
+  @media (max-width: ${(props) => props.theme.tabletBreak}) {
+    padding: 0;
+  }
 `
 const Inner = styled.div`
   border-radius: 1rem;
@@ -29,6 +33,10 @@ const Inner = styled.div`
   width: 100%;
   max-width: ${(props) => props.theme.maxWidth};
 
+  @media (max-width: ${(props) => props.theme.tabletBreak}) {
+    height: 100vh;
+    border-radius: 0;
+  }
   #artistImage {
     border-radius: 50%;
     box-shadow: ${(props) => props.theme.bs};
@@ -36,7 +44,9 @@ const Inner = styled.div`
 
   button {
     border: 2px solid green;
-    align-self: flex-end;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
 
   img {

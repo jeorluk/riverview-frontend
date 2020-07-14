@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react'
-import Link from 'next/link'
 import BlockContent from '@sanity/block-content-to-react'
 
 import styled, { css } from 'styled-components'
 import urlFor from '../util/urlFor'
 import { motion } from 'framer-motion'
-import { HoveredItemContext } from '../context'
-import ArtistModal from './ArtistModal'
+import { HoveredItemContext, ModalContext } from '../context'
+import ArtistDetail from './ArtistDetail'
 
 const SingleArtistStyles = styled(motion.div)`
   box-shadow: ${(props) => props.theme.bs};
@@ -39,7 +38,6 @@ const ArtistName = styled.div(
     z-index: 2;
     background-color: ${theme.color.darkShade};
     color: ${theme.color.lightShade};
-    /* font-size: 2rem; */
   `
 )
 
@@ -81,12 +79,11 @@ const ArtistCard = styled.div`
 
 const Artist = (props) => {
   const { _id, slug, intro, image, imageMeta, name } = props
-  const [isSelected, setSelected] = useState(false)
   const { hoveredItem, setHoveredItem } = useContext(HoveredItemContext)
   const isHovered = _id === hoveredItem
+  const { setIsVisible, setComponent } = useContext(ModalContext)
   return (
     <ArtistCard>
-      {isSelected && <ArtistModal artist={props} setSelected={setSelected} />}
       <SingleArtistStyles
         key={_id}
         intitial={isHovered ? 'visible' : 'hidden'}
@@ -95,27 +92,17 @@ const Artist = (props) => {
         onTap={() => setHoveredItem(_id)}
         animate={isHovered ? 'visible' : 'hidden'}
       >
-        {/* <Link href='/artist/[slug]' as={`/artist/${slug.current}`}> */}
-        {/* <a> */}
         <Mask
-          onClick={() => {
-            setSelected(true)
+          onClick={(e) => {
+            setComponent(<ArtistDetail {...props} />)
+            setIsVisible(true)
           }}
           variants={maskVariants}
         >
           {intro && <BlockContent blocks={intro} />}
         </Mask>
-        {/* </a> */}
-        {/* </Link> */}
-        <div
-          className='holder'
-          style={
-            {
-              // backgroundImage: `url(${imageMeta.metadata.lqip})`,
-              // paddingTop: `calc(100% / ${artist.imageMeta.metadata.dimensions.aspectRatio})`,
-            }
-          }
-        >
+
+        <div className='holder'>
           {
             <img
               src={urlFor(image)

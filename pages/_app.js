@@ -5,7 +5,7 @@ import groq from 'groq'
 import client from '../client'
 
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
-import { HoveredItemContextProvider } from '../context'
+import { HoveredItemContextProvider, ModalContextProvider } from '../context'
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 const GlobalStyle = createGlobalStyle`
@@ -124,8 +124,10 @@ function MyApp({ Component, pageProps, settings }) {
   return (
     <ThemeProvider theme={theme}>
       <HoveredItemContextProvider>
-        <GlobalStyle />
-        <Component {...pageProps} />
+        <ModalContextProvider>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </ModalContextProvider>
       </HoveredItemContextProvider>
     </ThemeProvider>
   )

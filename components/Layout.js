@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import Header from './header/Header'
 import Footer from './Footer'
+import Modal from './Modal'
 
 const LayoutStyles = styled.div(
   ({ theme, leftwidth, rightwidth, mainwidth }) => css`
@@ -70,26 +71,29 @@ const Layout = ({ children, inner, sidebarStart, sidebarEnd, columns }) => {
     ? columns
     : { leftWidth: '1fr', mainWidth: '4fr', rightWidth: '1fr' }
   return (
-    <LayoutStyles
-      leftwidth={leftWidth}
-      mainwidth={mainWidth}
-      rightwidth={rightWidth}
-    >
-      <HeaderContainer>
-        <Header />
-      </HeaderContainer>
-      <SideBarStart>{sidebarStart}</SideBarStart>
-      <SideBarEnd>{sidebarEnd}</SideBarEnd>
-      <Inner>
-        <>
-          {children}
-          {inner}
-        </>
-      </Inner>
-      <FooterContainer>
-        <Footer />
-      </FooterContainer>
-    </LayoutStyles>
+    <>
+      <Modal />
+      <LayoutStyles
+        leftwidth={leftWidth}
+        mainwidth={mainWidth}
+        rightwidth={rightWidth}
+      >
+        <HeaderContainer>
+          <Header />
+        </HeaderContainer>
+        <SideBarStart>{sidebarStart}</SideBarStart>
+        <SideBarEnd>{sidebarEnd}</SideBarEnd>
+        <Inner>
+          <>
+            {children}
+            {inner}
+          </>
+        </Inner>
+        <FooterContainer>
+          <Footer />
+        </FooterContainer>
+      </LayoutStyles>
+    </>
   )
 }
 
