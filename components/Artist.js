@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef } from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 
 import styled, { css } from 'styled-components'
@@ -6,6 +6,9 @@ import urlFor from '../util/urlFor'
 import { motion } from 'framer-motion'
 import { HoveredItemContext, ModalContext } from '../context'
 import ArtistDetail from './ArtistDetail'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { useClickOutside } from '../hooks'
 
 const SingleArtistStyles = styled(motion.div)`
   box-shadow: ${(props) => props.theme.bs};
@@ -43,10 +46,10 @@ const ArtistName = styled.div(
 
 const Mask = styled(motion.div)`
   text-align: center;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 1rem;
   position: absolute;
   z-index: 1;
   top: 0;
@@ -78,18 +81,35 @@ const ArtistCard = styled.div`
 `
 
 const Artist = (props) => {
+  const artistRef = useRef()
   const { _id, slug, intro, image, imageMeta, name } = props
   const { hoveredItem, setHoveredItem } = useContext(HoveredItemContext)
   const isHovered = _id === hoveredItem
   const { setIsVisible, setComponent } = useContext(ModalContext)
+  const handleTap = () => {
+    console.log('handle tap')
+    setHoveredItem(_id)
+    document.addEventListener('touchstart', handleNextTap)
+  }
+
+  const handleNextTap = (e) => {
+    console.log('Next Tap')
+    if (artistRef.current && !artistRef.current.contains(e.target)) {
+      setHoveredItem(0)
+    }
+    document.removeEventListener('touchstart', handleNextTap)
+  }
+
   return (
-    <ArtistCard>
+    <ArtistCard ref={artistRef}>
       <SingleArtistStyles
         key={_id}
         intitial={isHovered ? 'visible' : 'hidden'}
         onHoverStart={() => setHoveredItem(_id)}
         onHoverEnd={() => setHoveredItem(0)}
-        onTap={() => setHoveredItem(_id)}
+        onTap={(e) => {
+          handleTap()
+        }}
         animate={isHovered ? 'visible' : 'hidden'}
       >
         <Mask
@@ -100,6 +120,7 @@ const Artist = (props) => {
           variants={maskVariants}
         >
           {intro && <BlockContent blocks={intro} />}
+          <FontAwesomeIcon icon={faPlusCircle} />
         </Mask>
 
         <div className='holder'>
