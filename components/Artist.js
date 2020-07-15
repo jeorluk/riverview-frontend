@@ -87,13 +87,11 @@ const Artist = (props) => {
   const isHovered = _id === hoveredItem
   const { setIsVisible, setComponent } = useContext(ModalContext)
   const handleTap = () => {
-    console.log('handle tap')
     setHoveredItem(_id)
     document.addEventListener('touchstart', handleNextTap)
   }
 
   const handleNextTap = (e) => {
-    console.log('Next Tap')
     if (artistRef.current && !artistRef.current.contains(e.target)) {
       setHoveredItem(0)
     }

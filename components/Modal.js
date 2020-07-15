@@ -37,7 +37,7 @@ const Inner = styled(motion.div)`
   max-width: ${(props) => props.theme.maxWidth};
 
   @media (max-width: ${(props) => props.theme.tabletBreak}) {
-    height: 100vh;
+    min-height: 100vh;
     border-radius: 0;
   }
 

@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import Hamburger from './Hamburger'
 import RiverviewLogo from '../../public/RiverviewLogo.svg'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import Router from 'next/router'
 
 const NavStyles = styled.nav(
   ({ theme }) => css`
@@ -33,8 +34,6 @@ const DesktopNav = styled.ul(
     display: grid;
     grid-auto-flow: column;
     align-content: flex-end;
-    /* font-size: 1.5em; */
-    /* font-weight: 1000; */
 
     list-style: none;
 
@@ -42,7 +41,6 @@ const DesktopNav = styled.ul(
       text-align: center;
       padding: 0 0.5em;
       margin: auto;
-      /* border: 2px solid yellow; */
     }
     li:not(:first-child) {
       border-left: 1px solid ${theme.color.lightShade};
@@ -67,7 +65,6 @@ const NavDrawer = styled(motion.ul)(
     margin: 0;
     padding-left: 0.5em;
     list-style: none;
-    /* font-size: 2em; */
     background: ${theme.color.darkShade};
     color: ${theme.color.lightShade};
 
@@ -89,9 +86,7 @@ const list = {
   open: {
     height: 'auto',
     transition: {
-      // when: 'beforeChildren',
       staggerChildren: 0.07,
-      // delayChildren: 0.2,
     },
   },
   closed: {
@@ -100,7 +95,6 @@ const list = {
       staggerChildren: 0.05,
       staggerDirection: -1,
       delay: 0.2,
-      // when: 'afterChildren',
     },
   },
 }
@@ -128,6 +122,18 @@ const menuItems = [
 
 const Nav = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      setIsNavOpen(false)
+    }
+
+    Router.events.on('routeChangeStart', handleRouteChange)
+    return () => {
+      Router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [])
+
   return (
     <NavStyles>
       <Link href='/'>
