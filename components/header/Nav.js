@@ -139,7 +139,7 @@ const Nav = () => {
         {menuItems.map((item) => {
           return (
             <li key={`desktop${item.text}`}>
-              <Link href={item.path}>
+              <Link href='/[slug]' as={item.path}>
                 <a>{item.text}</a>
               </Link>
             </li>
@@ -160,7 +160,7 @@ const Nav = () => {
           {menuItems.map((item) => {
             return (
               <motion.li key={item.text} variants={items}>
-                <Link href={item.path}>
+                <Link href='/[slug]' as={item.path}>
                   <a>{item.text}</a>
                 </Link>
               </motion.li>
