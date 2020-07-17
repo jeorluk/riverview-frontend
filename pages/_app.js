@@ -6,6 +6,7 @@ import client from '../client'
 
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
 import { HoveredItemContextProvider, ModalContextProvider } from '../context'
+
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 const GlobalStyle = createGlobalStyle`
@@ -60,6 +61,7 @@ html {
 }
 
 body {
+
   background: url('/blankBackground.jpg');
   background-size: cover;
   padding: 0;

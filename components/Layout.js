@@ -6,10 +6,9 @@ import Modal from './Modal'
 
 const LayoutStyles = styled.div(
   ({ theme, leftwidth, rightwidth, mainwidth }) => css`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     padding: 0;
-    overflow-y: scroll;
 
     display: grid;
     /* column-gap: 0.5rem; */

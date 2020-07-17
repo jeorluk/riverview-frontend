@@ -166,7 +166,7 @@ const Nav = () => {
           {menuItems.map((item) => {
             return (
               <motion.li key={item.text} variants={items}>
-                <Link href='/[slug]' as={item.path}>
+                <Link href='/[slug]' as={item.path} scroll={true}>
                   <a>{item.text}</a>
                 </Link>
               </motion.li>
