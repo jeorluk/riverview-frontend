@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useEffect, useRef } from 'react'
+=======
+import React, { useRef, useEffect } from 'react'
+>>>>>>> tm
 import styled, { css } from 'styled-components'
 import Header from './header/Header'
 import Footer from './Footer'
@@ -70,6 +74,7 @@ const Layout = ({ children, inner, sidebarStart, sidebarEnd, columns }) => {
   const { leftWidth = '1fr', mainWidth = '4fr', rightWidth = '1fr' } = columns
     ? columns
     : { leftWidth: '1fr', mainWidth: '4fr', rightWidth: '1fr' }
+
   const layoutRef = useRef()
   const scrollToTop = () => {
     layoutRef.current.scrollTop = 0
@@ -77,9 +82,10 @@ const Layout = ({ children, inner, sidebarStart, sidebarEnd, columns }) => {
   useEffect(() => {
     Router.events.on('routeChangeComplete', scrollToTop)
 
-    return Router.events.off('routeChangeComplete', scrollToTop)
+    return () => {
+      Router.events.off('routeChangeComplete', scrollToTop)
+    }
   }, [])
-
   return (
     <>
       <Modal />
