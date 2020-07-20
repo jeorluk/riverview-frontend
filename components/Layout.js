@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import Header from './header/Header'
 import Footer from './Footer'
 import Modal from './Modal'
+import { Router } from 'next/router'
 
 const LayoutStyles = styled.div(
   ({ theme, leftwidth, rightwidth, mainwidth }) => css`
@@ -70,10 +71,26 @@ const Layout = ({ children, inner, sidebarStart, sidebarEnd, columns }) => {
   const { leftWidth = '1fr', mainWidth = '4fr', rightWidth = '1fr' } = columns
     ? columns
     : { leftWidth: '1fr', mainWidth: '4fr', rightWidth: '1fr' }
+
+  const layoutRef = useRef()
+  const scrollToTop = () => {
+    console.log('Scroll')
+    console.log(layoutRef.current)
+    layoutRef.current.scrollTop = 0
+  }
+  useEffect(() => {
+    console.log('USE EFFECT')
+    Router.events.on('routeChangeComplete', scrollToTop)
+
+    return () => {
+      Router.events.off('routeChangeComplete', scrollToTop)
+    }
+  }, [])
   return (
     <>
       <Modal />
       <LayoutStyles
+        ref={layoutRef}
         leftwidth={leftWidth}
         mainwidth={mainWidth}
         rightwidth={rightWidth}
