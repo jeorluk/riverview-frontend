@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useEffect, useRef } from 'react'
-=======
 import React, { useRef, useEffect } from 'react'
->>>>>>> tm
 import styled, { css } from 'styled-components'
 import Header from './header/Header'
 import Footer from './Footer'
