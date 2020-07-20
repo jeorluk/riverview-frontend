@@ -8,9 +8,9 @@ import { Router } from 'next/router'
 const LayoutStyles = styled.div(
   ({ theme, leftwidth, rightwidth, mainwidth }) => css`
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: scroll;
     padding: 0;
-
     display: grid;
     /* column-gap: 0.5rem; */
     grid-template-rows: ${theme.mobileHeaderHeight} 1fr auto auto;
