@@ -4,10 +4,16 @@ import getYoutubeId from 'get-youtube-id'
 import styled from 'styled-components'
 
 const YoutubeStyles = styled.div`
+  padding-top: 2em;
   display: grid;
-  justify-content: center;
+  justify-items: center;
   width: 100%;
   margin: 0 auto;
+  border-bottom: 1px solid ${(props) => props.theme.color.darkShade};
+
+  caption {
+    max-width: 50%;
+  }
 `
 
 const Youtube = (props) => {
