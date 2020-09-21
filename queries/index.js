@@ -10,6 +10,7 @@ export const artistProjection = groq`{
 export const eventProjection = groq`{...}`
 export const queryProjection = groq`{...}`
 export const programProjection = groq`{...}`
+export const youtubeProjection = groq`{...}`
 export const ctaProjection = groq`{
     _type,
     'title': cta.title,
@@ -36,6 +37,7 @@ export const contentProjection = groq`{
     ...,
     _type == 'artistReference'=>@->${artistProjection},
     _type == 'eventReference'=>@->${eventProjection},
+    _type == 'youtubeReference'=>@->${youtubeProjection},
     _type == 'programReference'=>@->${programProjection},
     _type == 'queryReference'=>@->${queryProjection},
     _type == 'listReference'=>@->${listProjection},

@@ -66,7 +66,14 @@ const Inner = styled.div`
    }
 `
 
-const Layout = ({ children, inner, sidebarStart, sidebarEnd, columns }) => {
+const Layout = ({
+  children,
+  heading,
+  inner,
+  sidebarStart,
+  sidebarEnd,
+  columns,
+}) => {
   const { leftWidth = '1fr', mainWidth = '4fr', rightWidth = '1fr' } = columns
     ? columns
     : { leftWidth: '1fr', mainWidth: '4fr', rightWidth: '1fr' }
@@ -98,8 +105,9 @@ const Layout = ({ children, inner, sidebarStart, sidebarEnd, columns }) => {
         <SideBarEnd>{sidebarEnd}</SideBarEnd>
         <Inner>
           <>
-            {children}
+            <h1>{heading}</h1>
             {inner}
+            {children}
           </>
         </Inner>
         <FooterContainer>

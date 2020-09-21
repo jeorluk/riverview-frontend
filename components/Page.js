@@ -4,7 +4,7 @@ import RenderComponents from './RenderComponents'
 import RenderSidebarComponents from './RenderSidebarComponents'
 import { NextSeo } from 'next-seo'
 
-const Page = ({ resolvedPage }) => {
+const Page = ({ resolvedPage, children }) => {
   const {
     content,
     sidebar1,
@@ -16,6 +16,7 @@ const Page = ({ resolvedPage }) => {
   } = resolvedPage
   return (
     <Layout
+      heading={pageSettings.heading}
       inner={<RenderComponents components={content} />}
       sidebarStart={<RenderSidebarComponents components={sidebar1} />}
       sidebarEnd={<RenderSidebarComponents components={sidebar2} />}
@@ -29,7 +30,7 @@ const Page = ({ resolvedPage }) => {
         }
         description={pageSettings.description}
       />
-      <h1>{pageSettings.heading}</h1>
+      {children}
     </Layout>
   )
 }
