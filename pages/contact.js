@@ -15,7 +15,7 @@ const Contact = ({ resolvedPage }) => {
 
 export async function getStaticProps() {
   const query = mainPageQuery
-  const slug = 'contact_page'
+  const slug = 'contact'
   const page = await client.fetch(query, { slug })
   const resolvedContent = await resolveQueries(page.content)
   const resolvedSidebar1 = await resolveQueries(page.sidebar1)
