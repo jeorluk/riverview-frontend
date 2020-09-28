@@ -4,8 +4,6 @@ import client from '../client'
 import ContactForm from '../components/ContactForm'
 
 const Contact = ({ resolvedPage }) => {
-  const { content, sidebar1, sidebar2, ...pageSettings } = resolvedPage
-
   return (
     <Page resolvedPage={resolvedPage}>
       <ContactForm />
