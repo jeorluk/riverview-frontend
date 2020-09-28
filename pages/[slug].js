@@ -10,9 +10,13 @@ const generatedPage = ({ resolvedPage }) => {
 export async function getStaticPaths() {
   const query = groq`*[_type=="page"]{"slug": slug.current}`
   const pageList = await client.fetch(query)
-  const paths = pageList.map((page) => ({
-    params: { slug: page.slug },
-  }))
+  const paths = pageList
+    .filter((page) => {
+      return page.slug !== 'contact'
+    })
+    .map((page) => ({
+      params: { slug: page.slug },
+    }))
 
   return { paths, fallback: false }
 }
