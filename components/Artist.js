@@ -9,6 +9,7 @@ import ArtistDetail from './ArtistDetail'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { useClickOutside } from '../hooks'
+import Image from 'next/image'
 
 const SingleArtistStyles = styled(motion.div)`
   box-shadow: ${(props) => props.theme.bs};
@@ -122,17 +123,14 @@ const Artist = (props) => {
         </Mask>
 
         <div className='holder'>
-          {
-            <img
-              src={urlFor(image)
+          
+
+            <Image src={urlFor(image)
                 .format('jpg')
                 .auto('format')
                 .height(300)
                 .width(300)
-                .url()}
-              alt={name}
-            />
-          }
+                .url()} width={300} height={300} alt={name}/>
         </div>
         <ArtistName className='text_large'>{name}</ArtistName>
       </SingleArtistStyles>
