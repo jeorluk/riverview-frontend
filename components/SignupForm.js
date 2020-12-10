@@ -4,10 +4,17 @@ import styled from 'styled-components'
 import { StandardButton } from './Buttons'
 
 const FormStyles = styled.div`
-  width: 600px;
   form {
     display: flex;
     flex-direction: column;
+  }
+  input {
+    width: 600px;
+    max-width: 90vw;
+  }
+
+  button {
+    align-self: center;
   }
 `
 

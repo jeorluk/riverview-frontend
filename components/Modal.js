@@ -6,8 +6,8 @@ import { ModalContext } from '../context'
 const ModalStyles = styled(motion.div)`
   padding: 2rem;
   display: flex;
-  align-content: center;
-  justify-content: center;
+  /* align-content: center; */
+  /* justify-content: center; */
   position: absolute;
   min-height: 100vh;
   width: 100vw;
@@ -18,10 +18,12 @@ const ModalStyles = styled(motion.div)`
 
   @media (max-width: ${(props) => props.theme.tabletBreak}) {
     padding: 0;
+    width: 100vw;
   }
 `
 const Inner = styled(motion.div)`
   overflow: hidden;
+  /* flex-shrink: 1; */
   border-radius: 1rem;
   box-shadow: ${(props) => props.theme.bs};
   padding: 1rem;
@@ -37,7 +39,9 @@ const Inner = styled(motion.div)`
   max-width: ${(props) => props.theme.maxWidth};
 
   @media (max-width: ${(props) => props.theme.tabletBreak}) {
+    border: 1px solid red;
     min-height: 100vh;
+    width: 100%;
     border-radius: 0;
   }
 
