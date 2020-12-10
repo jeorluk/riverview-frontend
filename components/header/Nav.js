@@ -5,6 +5,7 @@ import RiverviewLogo from '../../public/RiverviewLogo.svg'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import Router from 'next/router'
+import Modal from '../Modal'
 
 const NavStyles = styled.nav(
   ({ theme }) => css`
@@ -118,7 +119,7 @@ const menuItems = [
   { path: '/programs', text: 'Programs' },
   { path: '/events', text: 'Events' },
   { path: '/media', text: 'Media' },
-  { path: '/contact', text: 'Contact' },
+  // { path: '/contact', text: 'Contact' },
 ]
 
 const Nav = () => {
@@ -152,6 +153,11 @@ const Nav = () => {
             </li>
           )
         })}
+        <li>
+          <a href='https://us7.list-manage.com/contact-form?u=879caf7fc9bd0b4709cafe745&form_id=68befb12c250c0859d9d91fed0b644ba'>
+            Contact
+          </a>
+        </li>
       </DesktopNav>
       <MenuToggle>
         <Hamburger active={isNavOpen} setActive={setIsNavOpen} />
@@ -173,6 +179,11 @@ const Nav = () => {
               </motion.li>
             )
           })}
+          <motion.li variants={items}>
+            <a href='https://us7.list-manage.com/contact-form?u=879caf7fc9bd0b4709cafe745&form_id=68befb12c250c0859d9d91fed0b644ba'>
+              Contact
+            </a>
+          </motion.li>
         </NavDrawer>
       )}
     </NavStyles>

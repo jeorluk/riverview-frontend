@@ -99,7 +99,7 @@ h3, .mobile_menu {font-size: var(--size-up-three);}
 
 h4, .desktop_menu {font-size: var(--size-up-two);}
 
-h5,.text_large {font-size: var(--size-up-one);}
+h5,input, button,.text_large {font-size: var(--size-up-one);}
 
 small, .text_small {font-size: var(--size-down-one);}
 `

@@ -1,7 +1,10 @@
 // import Button from '../styles/Button'
+import { useContext } from 'react'
 import styled from 'styled-components'
+import { ModalContext } from '../context'
+import SignupForm from './SignupForm'
 
-const Button = styled.button`
+export const Button = styled.button`
   margin: 2px;
   /* padding: 0; */
   /* font-size: 1em; */
@@ -21,12 +24,20 @@ const Button = styled.button`
   }
 `
 
+export const StandardButton = styled.button`
+  margin: 1rem;
+  color: ${(props) => props.theme.color.lightShade};
+  background: ${(props) => props.theme.color.darkAccent};
+`
+
 export const SubscribeButton = (props) => {
+  const { setIsVisible, setComponent } = useContext(ModalContext)
   return (
     <Button
       {...props}
       onClick={() => {
-        alert('Subscription workflow')
+        setComponent(<SignupForm />)
+        setIsVisible(true)
       }}
     >
       JOIN OUR MAILING LIST
@@ -36,13 +47,22 @@ export const SubscribeButton = (props) => {
 
 export const DonateButton = (props) => {
   return (
-    <Button
-      {...props}
-      onClick={() => {
-        alert('Donate workflow')
-      }}
-    >
-      SUPPORT US
-    </Button>
+    <form action='https://www.paypal.com/donate' method='post' target='_top'>
+      <input type='hidden' name='hosted_button_id' value='42FAZHRXY2A9S' />
+      <Button
+        type='submit'
+        {...props}
+        onClick={(e) => {
+          const r = confirm(
+            'This will take you PayPal to process your contribution.'
+          )
+          if (!r) {
+            e.preventDefault()
+          }
+        }}
+      >
+        SUPPORT US
+      </Button>
+    </form>
   )
 }
