@@ -40,7 +40,7 @@ export const SubscribeButton = (props) => {
         setIsVisible(true)
       }}
     >
-      JOIN OUR MAILING LIST
+      GET UPDATES
     </Button>
   )
 }
