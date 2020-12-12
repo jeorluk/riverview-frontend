@@ -5,9 +5,6 @@ import { ModalContext } from '../context'
 
 const ModalStyles = styled(motion.div)`
   padding: 2rem;
-  display: flex;
-  /* align-content: center; */
-  /* justify-content: center; */
   position: absolute;
   min-height: 100vh;
   width: 100vw;
@@ -22,21 +19,19 @@ const ModalStyles = styled(motion.div)`
   }
 `
 const Inner = styled(motion.div)`
-  overflow: hidden;
-  /* flex-shrink: 1; */
-  border-radius: 1rem;
-  box-shadow: ${(props) => props.theme.bs};
-  padding: 1rem;
-  flex-direction: column;
-  display: grid;
-  grid-template-columns: 1fr;
-
-  align-items: flex-start;
-  justify-items: center;
   margin: auto;
-  background: ${(props) => props.theme.color.lightShade};
-  /* width: 100%; */
+  padding: 1rem;
   max-width: ${(props) => props.theme.maxWidth};
+  overflow: hidden;
+
+  border-radius: 1rem;
+  background: ${(props) => props.theme.color.lightShade};
+  box-shadow: ${(props) => props.theme.bs};
+
+  display: grid;
+  grid-auto-flow: row;
+  align-content: flex-start;
+  justify-items: center;
 
   @media (max-width: ${(props) => props.theme.tabletBreak}) {
     min-height: 100vh;

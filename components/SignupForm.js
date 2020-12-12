@@ -4,24 +4,41 @@ import styled from 'styled-components'
 import { StandardButton } from './Buttons'
 
 const FormStyles = styled.div`
+  padding-top: 2rem;
+  h2 {
+    text-align: center;
+  }
   form {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    align-items: center;
+    justify-items: center;
   }
   input {
-    width: 600px;
     max-width: 90vw;
+    margin: 0.25rem;
+  }
+
+  label {
+    align-self: center;
   }
 
   button {
     align-self: center;
   }
+
+  fieldset {
+    padding: 0 auto;
+    border: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
 `
 
 const SignupForm = () => {
+  const [submitAddressIsOn, toggleSubmitAddressIsOn] = useState(false)
   return (
     <FormStyles>
-      <h2>Sign Up</h2>
+      <h2>Join our mailing list</h2>
       <Formik
         initialValues={{
           firstName: '',
@@ -35,35 +52,49 @@ const SignupForm = () => {
           country: '',
         }}
         onSubmit={async (values) => {
-          //   await new Promise((r) => setTimeout(r, 500))
-          //   alert(JSON.stringify(values, null, 2))
+          // await new Promise((r) => setTimeout(r, 500))
+          // alert(JSON.stringify(values, null, 2))
 
           const res = await fetch('/api/')
           console.log(res)
         }}
       >
         <Form>
-          <label htmlFor='email'>Email</label>
-          <Field id='email' name='email' type='email' />
-          <label htmlFor='firstName'>First Name</label>
-          <Field id='firstName' name='firstName' />
-
-          <label htmlFor='lastName'>Last Name</label>
-          <Field id='lastName' name='lastName' />
-
-          <label htmlFor='address'>Address</label>
-          <Field id='address' name='address' />
-          <label htmlFor='addressLine2'>Address line 2</label>
-          <Field id='addressLine2' name='addressLine2' />
-          <label htmlFor='city'>City</label>
-          <Field id='city' name='city' />
-          <label htmlFor='state'>State</label>
-          <Field id='state' name='state' />
-          <label htmlFor='zip'>Zip</label>
-          <Field id='zip' name='zip' />
-          <label htmlFor='country'>Country</label>
-          <Field id='country' name='country' />
-          <StandardButton type='submit'>Submit</StandardButton>
+          <fieldset id='name_email'>
+            <label htmlFor='email'>Email</label>
+            <Field id='email' name='email' type='email' />
+            <label htmlFor='firstName'>First Name</label>
+            <Field id='firstName' name='firstName' />
+            <label htmlFor='lastName'>Last Name</label>
+            <Field id='lastName' name='lastName' />
+          </fieldset>
+          <label id='address_toggle'>
+            <input
+              type='checkbox'
+              checked={submitAddressIsOn}
+              onChange={() => {
+                toggleSubmitAddressIsOn(!submitAddressIsOn)
+              }}
+            />
+            Would you like to receive paper mailings?
+          </label>
+          {submitAddressIsOn && (
+            <fieldset id='address'>
+              <label htmlFor='address'>Address</label>
+              <Field id='address' name='address' />
+              <label htmlFor='addressLine2'>Address line 2</label>
+              <Field id='addressLine2' name='addressLine2' />
+              <label htmlFor='city'>City</label>
+              <Field id='city' name='city' />
+              <label htmlFor='state'>State</label>
+              <Field id='state' name='state' />
+              <label htmlFor='zip'>Zip</label>
+              <Field id='zip' name='zip' />
+              <label htmlFor='country'>Country</label>
+              <Field id='country' name='country' />
+            </fieldset>
+          )}
+          <StandardButton type='submit'>Sign up!</StandardButton>
         </Form>
       </Formik>
     </FormStyles>
