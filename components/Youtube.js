@@ -20,7 +20,10 @@ const YoutubeStyles = styled.div`
     padding-top: 56.25%;
     width: 100%;
   }
-
+  .player-container > div {
+    max-width: 100%;
+    max-height: 100%;
+  }
   iframe {
     width: 100%;
     position: absolute;

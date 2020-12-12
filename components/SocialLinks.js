@@ -8,6 +8,7 @@ import {
 
 const Styles = styled.p`
   font-variant: small-caps;
+  line-height: 2rem;
   margin: 0;
   a {
     padding: 2px 0.5em;
