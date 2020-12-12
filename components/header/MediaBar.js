@@ -7,6 +7,7 @@ const MediaBarStyles = styled.div`
   height: ${(props) => props.theme.mediaBarHeight};
   display: grid;
   grid-auto-flow: column;
+  align-items: center;
   justify-content: flex-end;
   background-color: ${(props) => props.theme.color.darkAccent};
   a {
