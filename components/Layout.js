@@ -13,6 +13,7 @@ const LayoutStyles = styled.div(
     padding: 0;
     display: grid;
     /* column-gap: 0.5rem; */
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: ${theme.mobileHeaderHeight} 1fr auto auto;
     grid-template-areas:
       'header'
@@ -61,9 +62,9 @@ const Inner = styled.div`
   /* max-width: ${(props) => props.theme.maxWidth}; */
   /* margin: 0 auto; */
   /* padding-top: 2rem; */
-  @media (max-width: ${(props) => props.theme.desktopBreak}) { 
+  @media (max-width: ${(props) => props.theme.desktopBreak}) {
     padding: 2rem;
-   }
+  }
 `
 
 const Layout = ({

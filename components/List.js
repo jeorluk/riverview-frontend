@@ -24,6 +24,7 @@ const items = {
 }
 
 const List = ({ listItems }) => {
+  console.log(JSON.stringify(listItems))
   return (
     <ListItems variants={container} initial='hidden' animate='show'>
       {listItems.map((item) => {
