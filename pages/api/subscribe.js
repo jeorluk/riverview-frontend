@@ -1,5 +1,7 @@
 const mailchimp = require('@mailchimp/mailchimp_marketing')
 const crypto = require('crypto')
+
+console.log(process.env.MAILCHIMP_LIST_ID)
 const listId = process.env.MAILCHIMP_LIST_ID
 
 mailchimp.setConfig({
@@ -42,7 +44,6 @@ export default async (req, res) => {
     status: 'subscribed',
   }
 
-  console.log(mergeFields)
   try {
     const response = await mailchimp.lists.setListMember(
       listId,
@@ -50,14 +51,11 @@ export default async (req, res) => {
       data
     )
 
-    console.log(response)
     res.body = response
     res.send(response)
   } catch (err) {
     console.log({ err })
-    res.status(err.status)
-    res.body = err.response
-    res.send(err.response)
+    return res.status(err.status).json({ error: err.text })
   }
 }
 
