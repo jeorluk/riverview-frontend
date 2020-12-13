@@ -1,6 +1,8 @@
 import { Field, Form, Formik, ErrorMessage } from 'formik'
 import React, { useState } from 'react'
+import { useContext } from 'react'
 import styled from 'styled-components'
+import { ModalContext } from '../context'
 import { StandardButton } from './Buttons'
 
 const FormStyles = styled.div`
@@ -35,6 +37,7 @@ const FormStyles = styled.div`
 `
 
 const SignupForm = () => {
+  const { setIsVisible } = useContext(ModalContext)
   const [submitAddressIsOn, toggleSubmitAddressIsOn] = useState(false)
   return (
     <FormStyles>
@@ -51,12 +54,27 @@ const SignupForm = () => {
           zip: '',
           country: '',
         }}
-        onSubmit={async (values) => {
-          // await new Promise((r) => setTimeout(r, 500))
-          // alert(JSON.stringify(values, null, 2))
+        onSubmit={async (e) => {
+          try {
+            const res = await fetch('./api/subscribe', {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(e),
+            })
 
-          const res = await fetch('/api/')
-          console.log(res)
+            const { error } = await res.json()
+
+            if (res.status === 200) {
+              alert('You are subscribed!')
+              setIsVisible(false)
+            } else {
+              alert(error)
+            }
+          } catch (err) {
+            alert(err)
+          }
         }}
       >
         <Form>
@@ -68,8 +86,9 @@ const SignupForm = () => {
             <label htmlFor='lastName'>Last Name</label>
             <Field id='lastName' name='lastName' />
           </fieldset>
-          <label id='address_toggle'>
+          <label htmlFor='toggleAddress'>
             <input
+              id='toggleAddress'
               type='checkbox'
               checked={submitAddressIsOn}
               onChange={() => {
