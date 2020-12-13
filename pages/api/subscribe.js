@@ -45,12 +45,13 @@ export default async (req, res) => {
   }
 
   try {
-    const response = await mailchimp.lists.setListMember(
-      listId,
-      subscriberHash,
-      data
-    )
+    // const response = await mailchimp.lists.setListMember(
+    //   listId,
+    //   subscriberHash,
+    //   data
+    // )
 
+    const response = await mailchimp.ping.get()
     res.body = response
     res.send(response)
   } catch (err) {
