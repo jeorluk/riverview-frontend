@@ -55,7 +55,7 @@ export default async (req, res) => {
     res.send(response)
   } catch (err) {
     console.log({ err })
-    return res.status(err.status).json({ error: err.text })
+    return res.status(err.status).json({ error: 'There was an error' })
   }
 }
 
