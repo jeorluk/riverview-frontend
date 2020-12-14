@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import styled from 'styled-components'
 import { ModalContext } from '../context'
 import { StandardButton } from './Buttons'
+import Error from './Error'
 
 const FormStyles = styled.div`
   padding-top: 2rem;
@@ -37,11 +38,36 @@ const FormStyles = styled.div`
 `
 
 const SignupForm = () => {
-  const { setIsVisible } = useContext(ModalContext)
+  const { setComponent, setIsVisible } = useContext(ModalContext)
   const [submitAddressIsOn, toggleSubmitAddressIsOn] = useState(false)
+  const [error, setError] = useState()
+
+  const submitForm = async (e) => {
+    try {
+      const res = await fetch('./api/subscribe', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(e),
+      })
+
+      const { error } = await res.json()
+
+      if (res.status === 200) {
+        setComponent(<h3>Thank you for subscribing.</h3>)
+      } else {
+        setError(error)
+      }
+    } catch (err) {
+      setError(error)
+    }
+  }
+
   return (
     <FormStyles>
       <h2>Join our mailing list</h2>
+      {error && <Error>{error}</Error>}
       <Formik
         initialValues={{
           firstName: '',
@@ -54,28 +80,7 @@ const SignupForm = () => {
           zip: '',
           country: '',
         }}
-        onSubmit={async (e) => {
-          try {
-            const res = await fetch('./api/subscribe', {
-              method: 'post',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(e),
-            })
-
-            const { error } = await res.json()
-
-            if (res.status === 200) {
-              alert('You are subscribed!')
-              setIsVisible(false)
-            } else {
-              alert(error)
-            }
-          } catch (err) {
-            alert(err)
-          }
-        }}
+        onSubmit={submitForm}
       >
         <Form>
           <fieldset id='name_email'>

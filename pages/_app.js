@@ -95,7 +95,7 @@ h2{
   margin-top: 0;
   font-size: var(--size-up-four);}
 
-h3, .mobile_menu {font-size: var(--size-up-three);}
+h3, .mobile_menu, .text_extra_large {font-size: var(--size-up-three);}
 
 h4, .desktop_menu {font-size: var(--size-up-two);}
 
