@@ -1,22 +1,15 @@
-// import Button from '../styles/Button'
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import styled from 'styled-components'
 import { ModalContext } from '../context'
+import ConfirmationDialog from './ConfirmationDialog'
 import SignupForm from './SignupForm'
 
 export const Button = styled.button`
   margin: 2px;
-  /* padding: 0; */
-  /* font-size: 1em; */
-  /* font-weight: bold; */
   border: 0;
   background: transparent;
   color: ${({ invert, theme }) =>
     invert ? theme.color.main : theme.color.lightShade};
-
-  /* background: ${({ invert, theme }) =>
-    invert ? theme.color.darkShade : theme.color.lightShade};
-  border-radius: 2em; */
 
   &:hover {
     color: ${({ theme }) => theme.color.lightShade};
@@ -46,19 +39,32 @@ export const SubscribeButton = (props) => {
 }
 
 export const DonateButton = (props) => {
+  const { setIsVisible, setComponent } = useContext(ModalContext)
+  const formRef = useRef(null)
+
   return (
-    <form action='https://www.paypal.com/donate' method='post' target='_top'>
+    <form
+      action='https://www.paypal.com/donate'
+      method='post'
+      target='_top'
+      ref={formRef}
+    >
       <input type='hidden' name='hosted_button_id' value='42FAZHRXY2A9S' />
       <Button
         type='submit'
         {...props}
         onClick={(e) => {
-          const r = confirm(
-            'This will take you PayPal to process your contribution.'
-          )
-          if (!r) {
-            e.preventDefault()
+          const confirmation = (response) => {
+            setIsVisible(false)
+            if (response) {
+              console.log({ formRef })
+              formRef.current.submit()
+            }
           }
+
+          e.preventDefault()
+          setComponent(<ConfirmationDialog confirmation={confirmation} />)
+          setIsVisible(true)
         }}
       >
         SUPPORT US
