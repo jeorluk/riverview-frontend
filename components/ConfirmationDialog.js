@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from './Buttons'
 
 const DialogStyles = styled.div`
   display: grid;
@@ -14,8 +13,9 @@ const DialogStyles = styled.div`
   }
 `
 
-const DialogButton = styled(Button)`
+const DialogButton = styled.button`
   width: 100%;
+  color: ${(props) => props.theme.color.lightShade};
   background: ${(props) => props.theme.color.darkAccent};
   border-radius: 5px;
   padding: 0.75rem;
