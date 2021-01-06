@@ -1,7 +1,7 @@
 import App from 'next/app'
 import { ThemeProvider, createGlobalStyle, css } from 'styled-components'
 import { config } from '@fortawesome/fontawesome-svg-core'
-import groq from 'groq'
+import { groq } from 'next-sanity'
 import client from '../client'
 
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import groq from 'groq'
+import { groq } from 'next-sanity'
 import client from '../../client'
 import Layout from '../../components/Layout'
 import ArtistDetail from '../../components/ArtistDetail'

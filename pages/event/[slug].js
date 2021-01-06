@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import styled from 'styled-components'
-import groq from 'groq'
+import {groq} from 'next-sanity'
 import BlockContent from '@sanity/block-content-to-react'
 import client from '../../client'
 import urlFor from '../../util/urlFor'

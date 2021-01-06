@@ -1,4 +1,4 @@
-import groq from 'groq'
+import { groq } from 'next-sanity'
 import client from '../client'
 import { mainPageQuery } from '../queries'
 import Page from '../components/Page'

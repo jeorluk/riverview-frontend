@@ -35,27 +35,27 @@
 //   })
 // }
 
-const sgMail = require('@sendgrid/mail')
+// const sgMail = require('@sendgrid/mail')
 
-const sendEmail = async ({ name, email, message }) => {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-  const CONTACT_EMAIL = 'jim.oruk@gmail.com'
+// const sendEmail = async ({ name, email, message }) => {
+//   sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+//   const CONTACT_EMAIL = 'jim.oruk@gmail.com'
 
-  const content = {
-    to: CONTACT_EMAIL,
-    from: email,
-    subject: `New Message From - ${name} <${email}>`,
-    text: message,
-    html: `<p>${message}</p>`,
-  }
+//   const content = {
+//     to: CONTACT_EMAIL,
+//     from: email,
+//     subject: `New Message From - ${name} <${email}>`,
+//     text: message,
+//     html: `<p>${message}</p>`,
+//   }
 
-  try {
-    await sgMail.send(content)
-    res.status(200).send('Message sent successfully.')
-  } catch (error) {
-    console.log('ERROR', error)
-    res.status(400).send('Message not sent.')
-  }
-}
+//   try {
+//     await sgMail.send(content)
+//     res.status(200).send('Message sent successfully.')
+//   } catch (error) {
+//     console.log('ERROR', error)
+//     res.status(400).send('Message not sent.')
+//   }
+// }
 
-export { sendEmail }
+// export { sendEmail }
