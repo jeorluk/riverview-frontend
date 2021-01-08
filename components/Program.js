@@ -3,7 +3,6 @@ import urlFor from '../util/urlFor'
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 import { useOnScreen } from '../hooks'
-import { useRef } from 'react'
 
 const ProgramStyles = styled(motion.div)`
   border-bottom: 1px solid ${(props) => props.theme.color.darkShade};
@@ -50,8 +49,7 @@ const variants = {
 }
 const Program = (props) => {
   const { image, name, description } = props
-  const ref = useRef()
-  const isOnScreen = useOnScreen(ref)
+  const [ref, isOnScreen] = useOnScreen()
   return (
     <AnimatePresence exitBeforeEnter>
       <ProgramStyles

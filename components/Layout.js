@@ -81,7 +81,9 @@ const Layout = ({
 
   const layoutRef = useRef()
   const scrollToTop = () => {
-    layoutRef.current.scrollTop = 0
+    if (layoutRef && layoutRef.current) {
+      layoutRef.current.scrollTop = 0
+    }
   }
   useEffect(() => {
     Router.events.on('routeChangeComplete', scrollToTop)
