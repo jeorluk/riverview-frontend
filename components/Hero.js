@@ -8,6 +8,10 @@ const HeroStyles = styled.div`
   background-image: url(${(props) => props.backgroundimage});
   text-align: center;
   color: ${(props) => props.theme.color.lightShade};
+
+  a {
+    color: ${(props) => props.theme.color.darkAccent};
+  }
 `
 
 const Hero = (props) => {
