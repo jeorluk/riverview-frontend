@@ -20,7 +20,7 @@ const SocialLinks = () => {
   return (
     <Styles>
       <a
-        href='https://www.facebook.com/RiverveiwEarlyMusic'
+        href='https://www.facebook.com/RiverviewEarlyMusic'
         target='blank'
         aria-label='Facebook'
       >

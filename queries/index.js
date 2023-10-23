@@ -7,7 +7,10 @@ export const artistProjection = groq`{
     "instruments": instruments[]->{title}
   }`
 
-export const eventProjection = groq`{...}`
+export const eventProjection = groq`{
+    ...,
+    "imageMeta": image.asset->,
+  }`
 export const queryProjection = groq`{...}`
 export const programProjection = groq`{...}`
 export const youtubeProjection = groq`{...}`
