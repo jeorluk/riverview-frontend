@@ -1,6 +1,7 @@
 import React from 'react'
-import { useImageBuilder } from '../hooks'
 import styled from 'styled-components'
+import Image from 'next/image'
+import urlFor from '../util/urlFor'
 
 const FigureStyles = styled.figure`
   text-align: center;
@@ -10,14 +11,17 @@ const FigureStyles = styled.figure`
   }
 `
 
-const Figure = ({ image }) => {
-  const builder = useImageBuilder()
+const Figure = (props) => {
+  const { image, imageMeta } = { ...props }
   return (
     <>
       {image && (
         <FigureStyles>
-          <img
-            src={builder.image(image).auto('format').url()}
+          <Image
+            src={urlFor(image).url()}
+            objectFit='contain'
+            width={800}
+            height={800 / imageMeta.metadata.dimensions.aspectRatio}
             alt={image.alt}
           />
           <figcaption>{image.caption}</figcaption>

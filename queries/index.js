@@ -33,6 +33,7 @@ export const listProjection = groq`{
 
 export const imageSectionProjection = groq`{
     ...,
+    "imageMeta": image.asset->,
     'cta': ${ctaProjection}
 }`
 

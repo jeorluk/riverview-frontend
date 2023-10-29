@@ -10,12 +10,12 @@ const ImageSectionStyles = styled.div`
 `
 
 const ImageSection = (props) => {
-  const { heading, text, image, cta } = props
+  const { heading, text, image, imageMeta, cta } = props
   return (
     <ImageSectionStyles>
       <h2>{heading}</h2>
       <SimpleBlockContent blocks={text} />
-      <Figure image={image} />
+      <Figure image={image} imageMeta={imageMeta} />
       <Cta cta={cta} />
     </ImageSectionStyles>
   )
