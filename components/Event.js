@@ -79,10 +79,7 @@ const Event = (props) => {
             </a>
           </p>
           <p>
-            <a
-              href={`http://maps.google.com/maps?q=${address}`}
-              target='_blank'
-            >
+            <a href={ticketLink} target='_blank'>
               <strong>Info/Tickets: </strong>
               {ticketLink}
             </a>
