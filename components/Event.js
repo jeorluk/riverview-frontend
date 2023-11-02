@@ -40,7 +40,6 @@ const SingleEventStyles = styled.div`
 `
 
 const Event = (props) => {
-  console.log({ ...props })
   const {
     image,
     imageMeta,
