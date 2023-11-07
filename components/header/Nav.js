@@ -138,18 +138,14 @@ const Nav = () => {
 
   return (
     <NavStyles>
-      <Link href='/'>
-        <a aria-label='Link to Riverview home page'>
-          <RiverviewLogo />
-        </a>
+      <Link href='/' aria-label='Link to Riverview home page'>
+        <RiverviewLogo />
       </Link>
       <DesktopNav className='desktop_menu'>
         {menuItems.map((item) => {
           return (
             <li key={`desktop${item.text}`}>
-              <Link href={item.path}>
-                <a>{item.text}</a>
-              </Link>
+              <Link href={item.path}>{item.text}</Link>
             </li>
           )
         })}
@@ -174,7 +170,7 @@ const Nav = () => {
             return (
               <motion.li key={item.text} variants={items}>
                 <Link href={item.path} scroll={true}>
-                  <a>{item.text}</a>
+                  {item.text}
                 </Link>
               </motion.li>
             )

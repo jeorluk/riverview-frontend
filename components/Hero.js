@@ -21,7 +21,11 @@ const Hero = (props) => {
       <h2>{props.heading}</h2>
       <HeroStyles
         className='text_hero'
-        backgroundimage={builder.image(props.backgroundImage).url()}
+        backgroundimage={
+          props.backgroundImage
+            ? builder.image(props.backgroundImage).url()
+            : 'none'
+        }
       >
         <SimpleBlockContent blocks={props.tagline} />
         {props.ctas &&

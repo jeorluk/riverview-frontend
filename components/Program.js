@@ -51,7 +51,7 @@ const Program = (props) => {
   const { image, name, description } = props
   const [ref, isOnScreen] = useOnScreen()
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode='wait'>
       <ProgramStyles
         // custom={i}
         initial='hidden'

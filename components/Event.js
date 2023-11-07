@@ -2,7 +2,7 @@ import React from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import styled from 'styled-components'
 import urlFor from '../util/urlFor'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 const SingleEventStyles = styled.div`
   display: grid;

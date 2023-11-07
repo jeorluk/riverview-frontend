@@ -83,11 +83,9 @@ const SingleArtist = ({ artist, hoveredArtist, setHoveredArtist }) => {
       animate={isHovered ? 'visible' : 'hidden'}
     >
       <Link href='/artist/[slug]' as={`/artist/${artist.slug.current}`}>
-        <a>
-          <Mask variants={maskVariants}>
-            {artist.intro && <BlockContent blocks={artist.intro} />}
-          </Mask>
-        </a>
+        <Mask variants={maskVariants}>
+          {artist.intro && <BlockContent blocks={artist.intro} />}
+        </Mask>
       </Link>
       <div
         className='holder'

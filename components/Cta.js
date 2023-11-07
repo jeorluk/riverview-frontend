@@ -22,7 +22,7 @@ const Cta = ({ cta }) => {
           {cta.page && (
             <CtaStyles className='text_large'>
               <Link href={cta.page}>
-                <a>{cta.title}</a>
+                {cta.title}
               </Link>
             </CtaStyles>
           )}

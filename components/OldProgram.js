@@ -52,7 +52,7 @@ const OldProgram = ({ program, i }) => {
   const ref = useRef()
   const isOnScreen = useOnScreen(ref)
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode='wait'>
       <ProgramStyles
         custom={i}
         initial='hidden'
