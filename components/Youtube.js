@@ -1,7 +1,12 @@
 import React from 'react'
 import getYoutubeId from 'get-youtube-id'
 import styled from 'styled-components'
-import ReactPlayer from 'react-player/youtube'
+// import ReactPlayer from 'react-player/youtube'
+
+import dynamic from 'next/dynamic'
+const ReactPlayer = dynamic(() => import('react-player/youtube'), {
+  ssr: false,
+})
 
 const YoutubeStyles = styled.div`
   padding-top: 2em;
@@ -34,7 +39,7 @@ const YoutubeStyles = styled.div`
   }
 
   @media (min-width: ${(props) => props.theme.desktopBreak}) {
-    caption {
+    .caption {
       max-width: 50%;
     }
   }
@@ -50,7 +55,7 @@ const Youtube = (props) => {
       <div className='player-container'>
         <ReactPlayer url={url} />
       </div>
-      <caption>{caption}</caption>
+      <div className='caption'>{caption}</div>
     </YoutubeStyles>
   )
 }
