@@ -6,7 +6,7 @@ import Modal from './Modal'
 import { Router } from 'next/router'
 
 const LayoutStyles = styled.div(
-  ({ theme, leftwidth, rightwidth, mainwidth }) => css`
+  ({ theme, $leftwidth, $rightwidth, $mainwidth }) => css`
     width: 100%;
     height: 100vh;
     overflow-y: scroll;
@@ -23,9 +23,9 @@ const LayoutStyles = styled.div(
       'footer';
 
     @media (min-width: ${theme.desktopBreak}) {
-      grid-template-columns: minmax(0, ${leftwidth}) minmax(0, ${mainwidth}) minmax(
+      grid-template-columns: minmax(0, ${$leftwidth}) minmax(0, ${$mainwidth}) minmax(
           0,
-          ${rightwidth}
+          ${$rightwidth}
         );
       grid-template-rows: ${theme.headerHeight} 1fr auto;
       grid-template-areas:
@@ -75,9 +75,13 @@ const Layout = ({
   sidebarEnd,
   columns,
 }) => {
-  const { leftWidth = '1fr', mainWidth = '4fr', rightWidth = '1fr' } = columns
+  const {
+    leftWidth = '1fr',
+    mainWidth = '4fr',
+    rightWidth = '1fr',
+  } = columns
     ? columns
-    : { leftWidth: '1fr', mainWidth: '4fr', rightWidth: '1fr' }
+    : { $leftWidth: '1fr', $mainWidth: '4fr', $rightWidth: '1fr' }
 
   const layoutRef = useRef()
   const scrollToTop = () => {
@@ -97,9 +101,9 @@ const Layout = ({
       <Modal />
       <LayoutStyles
         ref={layoutRef}
-        leftwidth={leftWidth}
-        mainwidth={mainWidth}
-        rightwidth={rightWidth}
+        $leftwidth={leftWidth}
+        $mainwidth={mainWidth}
+        $rightwidth={rightWidth}
       >
         <HeaderContainer>
           <Header />

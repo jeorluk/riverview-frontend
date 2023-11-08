@@ -20,28 +20,27 @@ const HamburgerIcon = styled.div`
     border-radius: 10px;
     transition: all 0.3s linear;
     transform-origin: 1px;
+  }
+  :first-child {
+    transform: ${(props) => (props.$active ? 'rotate(45deg)' : 'rotate(0)')};
+  }
 
-    :first-child {
-      transform: ${({ active }) => (active ? 'rotate(45deg)' : 'rotate(0)')};
-    }
+  :nth-child(2) {
+    opacity: ${(props) => (props.$active ? '0' : '1')};
+    transform: ${(props) =>
+      props.$active ? 'translateX(20px)' : 'translateX(0)'};
+  }
 
-    :nth-child(2) {
-      opacity: ${({ active }) => (active ? '0' : '1')};
-      transform: ${({ active }) =>
-        active ? 'translateX(20px)' : 'translateX(0)'};
-    }
-
-    :nth-child(3) {
-      /* transform-origin: 50%; */
-      transform: ${({ active }) => (active ? 'rotate(-45deg) ' : 'rotate(0)')};
-    }
+  :nth-child(3) {
+    /* transform-origin: 50%; */
+    transform: ${(props) => (props.$active ? 'rotate(-45deg) ' : 'rotate(0)')};
   }
 `
 
 const Hamburger = ({ active, setActive }) => {
   return (
     <HamburgerIcon
-      active={active}
+      $active={active}
       onClick={() => {
         setActive(!active)
       }}

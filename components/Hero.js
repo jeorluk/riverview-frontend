@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import SimpleBlockContent from './SimpleBlockContent'
 
 const HeroStyles = styled.div`
-  background-image: url(${(props) => props.backgroundimage});
+  background-image: url(${(props) => props.$backgroundimage});
   text-align: center;
   color: ${(props) => props.theme.color.lightShade};
 
@@ -21,7 +21,7 @@ const Hero = (props) => {
       <h2>{props.heading}</h2>
       <HeroStyles
         className='text_hero'
-        backgroundimage={
+        $backgroundimage={
           props.backgroundImage
             ? builder.image(props.backgroundImage).url()
             : 'none'
