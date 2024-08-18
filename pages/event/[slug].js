@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import styled from 'styled-components'
-import {groq} from 'next-sanity'
+import { groq } from 'next-sanity'
 import BlockContent from '@sanity/block-content-to-react'
 import client from '../../client'
 import urlFor from '../../util/urlFor'
@@ -61,7 +61,7 @@ const eventPage = ({ event }) => {
         <title>Riverview Early Music | {name}</title>
       </Head>
       <EventStyles>
-        <img src={urlFor(image).width(800).url()} alt={name} />
+        {image && <img src={urlFor(image).width(800).url()} alt={name} />}
         {formattedDate}
         <div className='details'>
           <BlockContent blocks={description} />

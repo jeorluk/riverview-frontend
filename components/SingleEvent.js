@@ -21,10 +21,12 @@ const SingleEventStyles = styled.div`
 const SingleEvent = ({ event }) => {
   return (
     <SingleEventStyles key={event._id}>
-      <img
-        src={urlFor(event.image).width(200).fit('max').url()}
-        alt={event.name}
-      />
+      {event.image && (
+        <img
+          src={urlFor(event.image).width(200).fit('max').url()}
+          alt={event.name}
+        />
+      )}
 
       {new Intl.DateTimeFormat('en-US', {
         weekday: 'long',

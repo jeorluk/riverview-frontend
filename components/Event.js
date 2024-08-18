@@ -86,15 +86,17 @@ const Event = (props) => {
         </div>
         <BlockContent blocks={description} />
       </div>
-      <Image
-        className='image'
-        id='eventImage'
-        src={urlFor(image).url()}
-        objectFit='contain'
-        width={200}
-        height={200 / imageMeta.metadata.dimensions.aspectRatio}
-        alt={name}
-      />
+      {image && (
+        <Image
+          className='image'
+          id='eventImage'
+          src={urlFor(image).url()}
+          objectFit='contain'
+          width={200}
+          height={200 / imageMeta.metadata.dimensions.aspectRatio}
+          alt={name}
+        />
+      )}
     </SingleEventStyles>
   )
 }
