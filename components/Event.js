@@ -8,8 +8,9 @@ const SingleEventStyles = styled.div`
   h2 {
     text-align: center;
   }
-  display: grid;
-
+  /* display: grid; */
+  /* max-width: 100%; */
+  /* grid-template-columns: 1fr; */
   grid-template-areas:
     'image'
     'details';
@@ -21,10 +22,12 @@ const SingleEventStyles = styled.div`
 
   .loc_time {
     p {
+      /* display: block; */
       color: ${({ theme }) => theme.color.lightAccent};
       margin: 0;
     }
     a {
+      /* display: block; */
       color: ${({ theme }) => theme.color.lightAccent};
     }
     a:hover {
@@ -35,7 +38,7 @@ const SingleEventStyles = styled.div`
   .details {
     place-self: center;
     grid-area: details;
-    text-align: justify;
+    /* text-align: justify; */
   }
 
   @media (min-width: ${(props) => props.theme.tabletBreak}) {
@@ -43,9 +46,9 @@ const SingleEventStyles = styled.div`
     /* h2 {
       text-align: left;
     } */
-    .details {
+    /* .details {
       text-align: left;
-    }
+    } */
   }
 `
 
