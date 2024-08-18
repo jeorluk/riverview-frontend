@@ -54,17 +54,21 @@ const SideBarEnd = styled.div`
   padding-top: 2rem;
 `
 const Inner = styled.div`
+  max-width: 100%;
   grid-area: inner;
   padding-top: 2rem;
+  p {
+    max-width: 100%;
+  }
   /* display: flex; */
   /* flex-direction: column; */
   /* align-content: top; */
   /* max-width: ${(props) => props.theme.maxWidth}; */
   /* margin: 0 auto; */
   /* padding-top: 2rem; */
-  @media (max-width: ${(props) => props.theme.desktopBreak}) {
+  /* @media (max-width: ${(props) => props.theme.desktopBreak}) {
     padding: 2rem;
-  }
+  } */
 `
 
 const Layout = ({

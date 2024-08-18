@@ -5,6 +5,9 @@ import urlFor from '../util/urlFor'
 import Image from 'next/legacy/image'
 
 const SingleEventStyles = styled.div`
+  h2 {
+    text-align: center;
+  }
   display: grid;
 
   grid-template-areas:
@@ -32,10 +35,17 @@ const SingleEventStyles = styled.div`
   .details {
     place-self: center;
     grid-area: details;
+    text-align: justify;
   }
 
   @media (min-width: ${(props) => props.theme.tabletBreak}) {
     grid-template-areas: 'image details';
+    /* h2 {
+      text-align: left;
+    } */
+    .details {
+      text-align: left;
+    }
   }
 `
 
