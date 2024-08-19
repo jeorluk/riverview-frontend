@@ -6,7 +6,8 @@ import Image from 'next/legacy/image'
 
 const SingleEventStyles = styled.div`
   h2 {
-    text-align: center;
+    margin: 0;
+    /* text-align: center; */
   }
   /* display: grid; */
   /* max-width: 100%; */
@@ -67,10 +68,8 @@ const Event = (props) => {
   return (
     <SingleEventStyles key={_id}>
       <div className='details'>
-        <h2>{name} </h2>
         <div className='loc_time text_large'>
           <p>
-            <strong>Date: </strong>
             {new Intl.DateTimeFormat('en-US', {
               weekday: 'long',
               year: 'numeric',
@@ -80,19 +79,21 @@ const Event = (props) => {
               minute: 'numeric',
               timeZone: 'America/New_York',
             }).format(new Date(date))}
+            <h2>{name} </h2>
           </p>
           <p>
             <a
               href={`http://maps.google.com/maps?q=${address}`}
               target='_blank'
             >
-              <strong>Location: </strong>
-              {location}, {address}
+              {location}
+              <br />
+              {address}
             </a>
           </p>
           <p>
             <a href={ticketLink} target='_blank'>
-              <strong>Click here for tickets </strong>
+              <strong>Click here for more information/tickets </strong>
             </a>
           </p>
         </div>
