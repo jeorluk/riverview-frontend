@@ -92,8 +92,7 @@ const Event = (props) => {
           </p>
           <p>
             <a href={ticketLink} target='_blank'>
-              <strong>Info/Tickets: </strong>
-              {ticketLink}
+              <strong>Click here for tickets </strong>
             </a>
           </p>
         </div>
